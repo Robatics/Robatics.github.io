@@ -1,0 +1,339 @@
+/*// BASE STYLES //*/
+
+html, body{
+  height: 100%;
+  width:100%;
+  overflow: hidden;
+  margin: 0;
+}
+
+.grass, .sky, .road{
+  position: relative;
+}
+
+.sky{
+  height: 45%;
+  background: skyblue;
+}
+
+.grass{
+  height: 30%;
+  background: seagreen;
+}
+
+.road{
+  height: 30%;
+  background: dimgrey;
+  box-sizing: border-box;
+  border-top: 10px solid grey;
+  border-bottom: 10px solid grey;
+  width: 100%;
+}
+
+.lines{
+  box-sizing: border-box;
+  border: 5px dashed #fff;
+  height: 0px;
+  width: 100%;
+  position: absolute;
+  top: 45%;
+}
+
+/*// ELEMENTS TO ANIMATE //*/
+
+.mario{
+  position: absolute;
+  top: -60px;
+  left: 0px;
+  z-index: 3;
+  animation: drive 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+/*// KEYFRAMES //*/
+@keyframes drive{
+  from{
+    transform: translateX(-200px);
+
+  }
+  to{
+    transform: translateX(1300px);
+  }
+}
+
+@keyframes cloud{
+  from{
+    transform: translateX(0%);
+
+  }
+  to{
+    transform: translateX(100%);
+  }
+}
+
+.cloud{
+  height: 120px;
+}
+
+.cloud_1{
+  position: absolute;
+  top: 1px;
+  left: 10%;
+  z-index: 3;
+  animation: cloud 10s linear 7 both;
+
+}
+
+.cloud_2{
+  position: absolute;
+  top: 60px;
+  left: 30%;
+  z-index: 3;
+  animation: cloud 10s linear 7 both reverse;
+  
+}
+
+.cloud_3{
+  position: absolute;
+  top: 30px;
+  left: 60%;
+  z-index: 3;
+  animation: cloud 10s linear 7 both;
+  
+}
+
+.cloud_4{
+  position: absolute;
+  top: 50px;
+  left: 75%;
+  z-index: 3;
+  animation: cloud 10s linear 7 both reverse;
+  
+}
+
+/*
+.winds{
+position: absolute;
+left: 40%;
+}*/
+
+.windmills-1{
+  position: relative;
+  left:-35%;
+}
+
+.windmills-2{
+  position: relative;
+  left:-10%;
+}
+
+.windmills-3{
+  position: relative;
+  left:15%;
+}
+
+.windmills-4{
+  position: relative;
+  left:40%;
+}
+
+.pole{
+  position:absolute;
+  z-index: 4;
+  width:10px;
+  height:120px;
+  background:#666;
+  left:42.2%;
+  top:-40px;
+}
+
+#blade{
+  position: absolute;
+  z-index: 5;
+  top: -70px;
+  left: 40%;
+  width: 70px;
+  height: 70px;
+  animation: Spin 10s ease-in-out infinite;
+  -moz-animation: Spin 10s ease-in-out infinite;
+  -webkit-animation: Spin 10s ease-in-out infinite;
+  -o-animation: Spin 10s ease-in-out infinite;
+}
+
+@keyframes Spin {
+   from { transform: rotate(0deg); }
+   to { transform: rotate(1440deg); }
+}
+/* Firefox */
+@-moz-keyframes Spin {
+   from { -moz-transform: rotate(0deg); }
+   to { -moz-transform: rotate(1440deg); }
+}
+/* WebKit - Chrome and Safari */
+@-webkit-keyframes Spin {
+   from { -webkit-transform: rotate(0deg); }
+   to { -webkit-transform: rotate(1440deg); }
+} 
+/* Opera */
+@-o-keyframes Spin {
+   from { -o-transform: rotate(0deg); }
+   to { -o-transform: rotate(1440deg); }
+}
+
+
+.topography-1{
+  position: absolute;
+  top:3%;
+  z-index: 2;
+  left:1%;
+  top: 25%;
+}
+
+.topography-2{
+  position: absolute;
+  top:3%;
+  z-index: 2;
+  left:40%;
+  top: 25%;
+}
+
+.topography-3{
+  position: absolute;
+  top:3%;
+  z-index: 2;
+  left:80%;
+  top: 25%;
+}
+
+.mountains{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+
+}
+
+
+.mountain1{
+  height: 10px;
+  width: 0px;
+  border: 70px solid #228B22;
+  border-top-right-radius:100%; 
+  border-top-left-radius:20%;
+  margin: 0px; 
+  margin-right:20px; 
+}
+
+.mountain2{
+  height: 40px;
+  width: 0px;
+  border: 70px solid #006400;
+  border-top-right-radius:100%; 
+  border-top-left-radius:100%;
+  z-index: -1;
+  position: absolute;
+  bottom:5%;
+}
+.mountain3{
+  height: 10px;
+  width: 0px;
+  border: 70px solid #32CD32;
+  border-top-right-radius:40%; 
+  border-top-left-radius:180%;
+  margin: 0px;
+
+}
+
+.flip1{
+  position: absolute;
+  left: -12%;
+  top: -6%;
+  height: 59.8px;
+  width: 0px;
+  border: 50px solid #228B22;
+  border-top-left-radius:100%; 
+  border-top-right-radius:20%;
+  border-color: transparent transparent transparent #228B22;
+  margin: 0px;
+}
+
+.flip2{
+  position: absolute;
+  right: -12%;
+  top: -6%;
+  height: 59px;
+  width: 0px;
+  border:50px solid #228B22;
+  border-top-right-radius:100%; 
+  border-top-left-radius:20%;
+  border-color: transparent #32CD32 transparent transparent;
+  margin: 0px;
+
+}
+
+
+
+
+@media screen and (max-width:1024px){
+html, body{
+  height: 100%;
+  width:100%;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+.cloud{
+  height:90px; 
+  }
+
+
+.topography-1, .topography-3{
+  display: none;
+}
+
+.topography-2{
+  left: 11%;
+  top: 29%;
+}
+
+
+.sky{
+  height: 45%;
+  background: skyblue;
+}
+
+.grass{
+  height: 25%;
+}
+
+
+.mario{
+  height: 100px;
+}
+
+
+.windmills-1{
+  left:-35%;
+}
+
+.windmills-2{
+  left:5%;
+}
+
+.windmills-3{
+  left:45%;
+}
+
+.windmills-4{
+  display: none;
+}
+
+#blade{
+  top: -70px;
+  left: 35%;
+}
+
+}
