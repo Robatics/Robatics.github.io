@@ -48,12 +48,6 @@ body {
 	margin: 20% auto;
 }
 
-@media screen and (max-width:1024px){
-	#codeSection {
-		margin: 30% auto;
-	}
-}
-
 #crakingSection{
 	position: relative;
 	display: flex;
@@ -280,4 +274,61 @@ body {
 
 #bottom_message p{
 	margin: 5px;
+}
+
+
+@media screen and (max-width:1024px){
+
+	#codeSection {
+		margin: 30% auto;
+	}
+}
+
+@media screen and (max-width:980px){
+	body {
+		padding: 0 auto;
+		overflow: hidden;
+	}
+
+	#codeSection {
+		margin: 0 auto;
+		margin-bottom: 0;
+	}
+	
+	#crakingSection{
+		margin: 0 auto;
+		width: 90%;
+		height: 95vh !important;
+	}
+
+	#icons{
+		left: 0;
+		bottom: 0;
+		flex-direction: row;
+		width: 100%;
+	}
+
+	#otherOptions:focus ul{
+		left: 0px;
+		top: -200%;
+		flex-direction: row;
+	}
+
+	#hint:hover #hint_h5{
+		top: -150%;
+	}
+
+	#partialfix:hover #partialfix_h5_1{
+		top: -180%;
+		left: 30%;
+	}
+
+	#gamePlayGadget{
+		width: 100%;
+		margin-top: 60% !important;
+	}
+
+	#bottom_message{
+		margin-top: 10px;
+	}
 }

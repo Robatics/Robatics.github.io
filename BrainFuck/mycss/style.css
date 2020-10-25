@@ -668,3 +668,98 @@ body {
 #bottom_message p{
 	margin: 5px;
 }
+
+
+@media screen and (max-width:1024px){
+
+	#codeSection {
+		margin: 30% auto;
+	}
+}
+
+@media screen and (max-width:980px){
+	body {
+		padding: 0 auto;
+		overflow: hidden;
+	}
+
+	.navs{
+		width: 90%;
+		margin: auto !important;
+	}
+
+	#landing {
+		width: 90%;
+		margin: 80% auto;
+	}
+
+	#landing h1 {
+		font-size:25px;
+	}
+
+	#startSection {
+		margin: 10px auto !important;
+		width: 90%;
+		height: 80vh;
+	}
+
+	#pickSection,
+	#main-multiplayer,
+	#pickDigit{
+		flex-direction: column;
+		margin: 50% auto !important;
+		width: 90% !important;
+		overflow: hidden;
+	}
+
+	#pickSection button,
+	#main-multiplayer button,
+	#pickDigit button{
+		margin: 10px auto;
+		width: 60%;
+	}
+
+
+
+	#codeSection {
+		margin: 0 auto;
+		margin-bottom: 0;
+	}
+	
+	#crakingSection{
+		margin: 0 auto;
+		width: 90%;
+		height: 85vh !important;
+	}
+
+	#icons{
+		left: 0;
+		bottom: 0;
+		flex-direction: row;
+		width: 100%;
+	}
+
+	#otherOptions:focus ul{
+		left: 0px;
+		top: -200%;
+		flex-direction: row;
+	}
+
+	#hint:hover #hint_h5{
+		top: -150%;
+	}
+
+	#partialfix:hover #partialfix_h5_1{
+		top: -180%;
+		left: 30%;
+	}
+
+	#gamePlayGadget{
+		width: 100%;
+		margin-top: 60% !important;
+	}
+
+	#bottom_message{
+		margin-top: 10px;
+	}
+}
