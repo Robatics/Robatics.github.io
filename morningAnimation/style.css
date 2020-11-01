@@ -52,6 +52,17 @@ html, body{
   animation-timing-function: linear;
 }
 
+.luigi{
+  position: absolute;
+  top: -0px;
+  left: -300px;
+  margin-top: 50px;
+  z-index: 3;
+  animation: drive 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
 /*// KEYFRAMES //*/
 @keyframes drive{
   from{
@@ -60,6 +71,17 @@ html, body{
   }
   to{
     transform: translateX(1300px);
+  }
+}
+
+@keyframes driveback{
+  from{
+    transform: translateX(1300px);
+
+  }
+  to{
+    transform: translateX(-200px);
+    
   }
 }
 
@@ -80,36 +102,36 @@ html, body{
 .cloud_1{
   position: absolute;
   top: 1px;
-  left: 10%;
+  left: 3%;
   z-index: 3;
-  animation: cloud 10s linear 7 both;
+  animation: cloud 10s linear infinite both ;
 
 }
 
 .cloud_2{
   position: absolute;
   top: 60px;
-  left: 30%;
+  left: 15%;
   z-index: 3;
-  animation: cloud 10s linear 7 both reverse;
+  animation: cloud 10s linear infinite both reverse;
   
 }
 
 .cloud_3{
   position: absolute;
   top: 30px;
-  left: 60%;
+  left: 40%;
   z-index: 3;
-  animation: cloud 10s linear 7 both;
+  animation: cloud 10s linear infinite both;
   
 }
 
 .cloud_4{
   position: absolute;
   top: 50px;
-  left: 75%;
+  left: 60%;
   z-index: 3;
-  animation: cloud 10s linear 7 both reverse;
+  animation: cloud 10s linear infinite both reverse;
   
 }
 
@@ -144,10 +166,22 @@ left: 40%;
   z-index: 4;
   width:10px;
   height:120px;
-  background:#666;
+  background:silver;
   left:42.2%;
   top:-40px;
+  animation: rise 1s linear;
+
 }
+
+@keyframes rise{
+  0%{
+    height: 0px;
+  }
+  100%{
+    height: 120px;
+  }
+}
+
 
 #blade{
   position: absolute;
@@ -156,30 +190,33 @@ left: 40%;
   left: 40%;
   width: 70px;
   height: 70px;
-  animation: Spin 10s ease-in-out infinite;
-  -moz-animation: Spin 10s ease-in-out infinite;
-  -webkit-animation: Spin 10s ease-in-out infinite;
-  -o-animation: Spin 10s ease-in-out infinite;
+  opacity: 0;
+  animation: Spin 60s ease-in-out infinite forwards;
+  -moz-animation: Spin 60s ease-in-out infinite forwards;
+  -webkit-animation: Spin 60s ease-in-out infinite forwards;
+  -o-animation: Spin 60s ease-in-out infinite forwards;
+  animation-delay: 2s !important;
+  transition:animation 2s ease-ins;
 }
 
 @keyframes Spin {
-   from { transform: rotate(0deg); }
-   to { transform: rotate(1440deg); }
+   from {opacity: 1; transform: rotate(0deg); }
+   to { opacity: 1; transform: rotate(300000deg); }
 }
 /* Firefox */
 @-moz-keyframes Spin {
-   from { -moz-transform: rotate(0deg); }
-   to { -moz-transform: rotate(1440deg); }
+   from { opacity: 0.2; -moz-transform: rotate(0deg); }
+   to { opacity: 1; -moz-transform: rotate(300000deg); }
 }
 /* WebKit - Chrome and Safari */
 @-webkit-keyframes Spin {
-   from { -webkit-transform: rotate(0deg); }
-   to { -webkit-transform: rotate(1440deg); }
+   from {opacity: 0.2;  -webkit-transform: rotate(0deg); }
+   to { opacity: 1; -webkit-transform: rotate(300000deg); }
 } 
 /* Opera */
 @-o-keyframes Spin {
-   from { -o-transform: rotate(0deg); }
-   to { -o-transform: rotate(1440deg); }
+   from {opacity: 0.2;  -o-transform: rotate(0deg); }
+   to {opacity: 1;  -o-transform: rotate(300000deg); }
 }
 
 
@@ -310,7 +347,7 @@ html, body{
 }
 
 
-.mario{
+.mario, .luigi{
   height: 100px;
 }
 
