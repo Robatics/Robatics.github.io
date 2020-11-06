@@ -433,6 +433,15 @@ body {
 	border:none;
 }
 
+.toGame{
+	text-decoration: none;
+	color: var(--theme-color-support);
+}
+
+.toGame:hover{
+	text-decoration: none;
+	color: var(--theme-color-support);
+}
 
 /*---GAMEPLAY ENTER CODE SECTION---*/
 
@@ -581,8 +590,8 @@ body {
 
 #all_message{
 	font-family: 'Poppins', sans-serif;
-	width: 45%;
-	border: 2px solid transparent;
+	width: 80%;
+	border: 2px solid var(--theme-color);
 	background: var(--theme-color-support);
 	color: var(--font-color-b);
 	margin: 20px auto;

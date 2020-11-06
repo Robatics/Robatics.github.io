@@ -53,7 +53,7 @@ def aidgame():
                 print("2 injured,2 alive")
             elif w and y not in j and x and z in j and w!=f and x!=g and y!=h and z!=i:
                 print("2 injured,2 alive")
-            elif w and x not in j and y and y in j and w!=f and x!=g and y!=h and z!=i:
+            elif w and x not in j and y and z in j and w!=f and x!=g and y!=h and z!=i:
                 print("2 injured,2 alive")
 
         #~1 injured,3 alive
@@ -157,34 +157,34 @@ def aidgame():
                 print("1 dead,2 injured,1 ALIVE")
 
         #~1 dead,1 injured, 2 alive
-            elif y and z not in j and w==f:
+            elif w and x in j and y and z not in j and w==f and x!=g:
                 print("1 dead,1 injured, 2 alive")
-            elif w and y in j and x and z not in j and w==f and x!=g and y!=h and z!=i:
+            elif w and y in j and x and z not in j and w==f and y!=h:
                 print("1 dead,1 injured, 2 alive")
-            elif w and z in j and x and y not in j and w==f and x!=g and y!=h and z!=i:
-                print("1 dead,1 injured, 2 alive")
-
-
-            elif w and x in j and y and z not in j and w!=f and x==g and y!=h and z!=i:
-                print("1 dead,1 injured, 2 alive")
-            elif x and y in j and w and z not in j and w!=f and x==g and y!=h and z!=i:
-                print("1 dead,1 injured, 2 alive")
-            elif x and z in j and w and y not in j and w!=f and x==g and y!=h and z!=i:
-                print("1 dead,1 injured, 2 alive")
-
-            elif w and y in j and x and z not in j and w!=f and x!=g and y==h and z!=i:
-                print("1 dead,1 injured, 2 alive")
-            elif x and y in j and w and z not in j and w!=f and x!=g and y==h and z!=i:
-                print("1 dead,1 injured, 2 alive")
-            elif y and z in j and w and x not in j and w!=f and x!=g and y==h and z!=i:
+            elif w and z in j and x and y not in j and w==f and z!=i:
                 print("1 dead,1 injured, 2 alive")
 
 
-            elif w and z in j and x and y not in j and w!=f and x!=g and y!=h and z==i:
+            elif x and w in j and y and z not in j and x==g and w!=f:
                 print("1 dead,1 injured, 2 alive")
-            elif x and z in j and w and y not in j and w!=f and x!=g and y!=h and z==i:
+            elif x and y in j and w and z not in j and x==g and y!=h:
                 print("1 dead,1 injured, 2 alive")
-            elif y and z in j and w and x not in j and w!=f and x!=g and y!=h and z==i:
+            elif x and z in j and w and y not in j and x==g and z!=i:
+                print("1 dead,1 injured, 2 alive")
+
+            elif y and w in j and x and z not in j and y==h and w!=g:
+                print("1 dead,1 injured, 2 alive")
+            elif y and x in j and w and z not in j and y==h and x!=g:
+                print("1 dead,1 injured, 2 alive")
+            elif y and z in j and w and x not in j and y==h and z!=i:
+                print("1 dead,1 injured, 2 alive")
+
+
+            elif z and w in j and x and y not in j and z==i and w!=f:
+                print("1 dead,1 injured, 2 alive")
+            elif z and x in j and w and y not in j and z==i and x!=g:
+                print("1 dead,1 injured, 2 alive")
+            elif z and y in j and w and x not in j and z==i and y!=h:
                 print("1 dead,1 injured, 2 alive")
 
 

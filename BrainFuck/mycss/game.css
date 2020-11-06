@@ -188,8 +188,8 @@ body {
 
 #all_message{
 	font-family: 'Poppins', sans-serif;
-	width: 45%;
-	border: 2px solid transparent;
+	width: 80%;
+	border: 2px solid var(--theme-color);
 	background: var(--theme-color-support);
 	color: var(--font-color-b);
 	margin: 20px auto;
@@ -298,7 +298,7 @@ body {
 	#crakingSection{
 		margin: 0 auto;
 		width: 90%;
-		height: 95vh !important;
+		height: 85vh !important;
 	}
 
 	#icons{
