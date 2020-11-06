@@ -299,10 +299,6 @@ body {
 		margin: 0 auto;
 		width: 90%;
 		height: 85vh !important;
-		position: fixed;
-		left: -40%;
-		top: -40%;
-		transform: translate(50%,50%);
 	}
 
 	#icons{
@@ -334,6 +330,5 @@ body {
 
 	#bottom_message{
 		margin-top: 10px;
-		margin-bottom: 80px !important;
 	}
 }
