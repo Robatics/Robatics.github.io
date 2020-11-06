@@ -188,7 +188,7 @@ body {
 
 #all_message{
 	font-family: 'Poppins', sans-serif;
-	width: 80%;
+	width: 95%;
 	border: 2px solid var(--theme-color);
 	background: var(--theme-color-support);
 	color: var(--font-color-b);
@@ -299,6 +299,10 @@ body {
 		margin: 0 auto;
 		width: 90%;
 		height: 85vh !important;
+		position: fixed;
+		left: -40%;
+		top: -40%;
+		transform: translate(50%,50%);
 	}
 
 	#icons{
@@ -330,5 +334,6 @@ body {
 
 	#bottom_message{
 		margin-top: 10px;
+		margin-bottom: 80px !important;
 	}
 }

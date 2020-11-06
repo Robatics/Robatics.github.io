@@ -83,8 +83,15 @@ decode.onclick = function(){
 	// const YnotinJ = j.includes(y);
 	// const ZnotinJ = j.includes(z);
 
+
+	//~NUMBER REPITITION
+	if(w==x ||  w==y || w==z || x==y || x==z || y==z){
+		most_recent_trial_message.innerHTML = "Repetition!! Change number";
+		enterCode.value="";
+	}
+
 	//~3 injured,1 alive
-	if(WinJ && XinJ && YinJ && !ZinJ && w!=f && x!=g && y!=h && z!=i){
+	else if(WinJ && XinJ && YinJ && !ZinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = "3 injured,1 alive";
 		enterCode.value="";
 	}
@@ -144,6 +151,7 @@ decode.onclick = function(){
 		most_recent_trial_message.innerHTML = "1 injured,3 alive";
 		enterCode.value="";
 	}
+
 
 	//~ALL ALIVE
 	else if(!WinJ && !XinJ && !YinJ && !ZinJ && w!=f && x!=g && y!=h && z!=i){
