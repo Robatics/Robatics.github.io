@@ -44,7 +44,7 @@ body {
 }
 
 .spacer{
-	margin-top: 30%;
+	margin-top: 20%;
 }
 
 /*HEADER*/
@@ -396,6 +396,7 @@ p {
 	background: var(--theme-transparency);
 	display: flex;
 	flex-direction: column;
+	color: var(--font-color-a);
 }
 
 
@@ -413,7 +414,7 @@ p {
 	position:absolute;
 	padding: auto;
 	background: var(--theme-color-support);
-	color: var(--theme-color-relation-b);
+	color: var(--font-color-a);
 	width: 200px;
 }
 
@@ -432,7 +433,7 @@ p {
 	position:absolute;
 	padding: auto;
 	background: var(--theme-color-support);
-	color: var(--theme-color-relation-b);
+	color: var(--font-color-a);
 	width: 200px;
 }
 
@@ -534,8 +535,8 @@ p {
 #decode:focus{
 	outline: none;
 	border:none;
-	background: var(--theme-color);
-	color: var(--theme-color-support);
+	background: var(--font-color-a);
+	color: var(--font-color-b) !important;
 }
 
 #bottom_message{
@@ -548,6 +549,35 @@ p {
 
 #bottom_message p{
 	margin: 5px;
+}
+
+#mobileKeys{
+	display: none;
+}
+
+.numbtn{
+	border-radius: 5px !important;
+	padding: 5px;
+	margin: 10px;
+	width: 10% !important;
+	color: var(--theme-color-support);
+	background: var(--theme-color);
+	cursor: pointer;
+	outline: none !important;
+	border:none !important;
+}
+
+#btnDel{
+	border-radius: 5px !important;
+	padding: 5px;
+	margin: 10px;
+	margin-left:75%;
+	width: 10% !important;
+	color: var(--theme-color-support);
+	background: red;
+	cursor: pointer;
+	outline: none !important;
+	border:none !important;
 }
 
 
@@ -733,10 +763,15 @@ p {
 
 	#all_message{
 		width: 90%;
+		margin: 0;
 	}
 
 	#bottom_message{
 		margin-top: 10px;
+	}
+
+	#mobileKeys{
+		display: block;
 	}
 	
 }

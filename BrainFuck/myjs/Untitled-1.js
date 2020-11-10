@@ -79,7 +79,6 @@ function reset(){
 }//end reset
 
 
-}
 var currentTime = new Date();
 function updateTimer(){
 	if (new Date - initialTime > (1000 * 1000 * 60 * 3)){
@@ -87,3 +86,11 @@ function updateTimer(){
 		setTimeout(updateTimer,1000);
 	}
 }
+
+
+
+//STOP RELOAD
+
+inGame_form.submit(function() {
+	return false;
+});

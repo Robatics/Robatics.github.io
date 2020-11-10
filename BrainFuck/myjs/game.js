@@ -43,28 +43,67 @@ const retryButton = document.querySelector('.retry-button');
 const time_display = document.getElementById('time-left-display');
 const restart_button = document.getElementById('start-button');
 
-const startingMinutes = 10;
+
+//Count Down
+let startingMinutes = 5;
 let time = startingMinutes * 60;
 
-function countDown(){
-setInterval(updateCountdown,1000);
-}
+
+
+//Game Over
+// inGame_partialFix.addEventListener('click', () => {
+// 	crakingSectionDiv.style.opacity='0.4';	
+// 	Game_OverDiv.style.opacity='1';
+// 	Game_OverDiv.style.zIndex ='40';
+// });
+
+
 
 function updateCountdown(){
-	const minutes = Math.floor(time/60);
+	let minutes = Math.floor(time/60);
 	let seconds = time % 60;
 
 	seconds = seconds < 10 ? '0' + seconds : seconds;
 
 	time_display.innerHTML = `${minutes}:${seconds}`;
+
+	if(seconds <= 0 && minutes <= 0){
+		
+		crakingSectionDiv.style.opacity='0.4';	
+		Game_OverDiv.style.opacity='1';
+		Game_OverDiv.style.zIndex ='40';
+		clearInterval(timeCounter);
+		startingMinutes = 2;
+	}
 	
 	time--;
+
 }
 
-restart_button.onclick = function(){
+
+function countDown(){
+	var timeCounter = setInterval(updateCountdown,1000);
+	}
+
+//Keep Playing
+keepPlayingButton.addEventListener('click', () => {
+	time = 2 * 60;;
 	countDown();
-}
+	
+	Game_OverDiv.style.opacity='0';
+	Game_OverDiv.style.zIndex ='-5';
+	crakingSectionDiv.style.opacity='1';
 
+});
+
+//Try Again
+retryButton.addEventListener('click', () => {
+	location.reload();
+});
+
+restart_button.addEventListener('click', () => {
+	location.reload();
+});
 
 //Toggle full Messages
 inGame_Trails_and_Stuff.addEventListener('click', () => {
@@ -73,21 +112,63 @@ inGame_Trails_and_Stuff.addEventListener('click', () => {
 
 });
 
-//Game Over
-inGame_partialFix.addEventListener('click', () => {
-	crakingSectionDiv.style.opacity='0.4';	
-	Game_OverDiv.style.opacity='1';
-	Game_OverDiv.style.zIndex ='40';
-});
 
-//Keep Playing
-keepPlayingButton.addEventListener('click', () => {
-	Game_OverDiv.style.opacity='0';
-	Game_OverDiv.style.zIndex ='-5';
-	crakingSectionDiv.style.opacity='1';
-});
+//Auto Focus On Input
+function SetFocus() {
+	enterCode.focus();	
+}
 
-decode.onclick = function(){
+//=====Start Mobile Keyboard=====//
+
+//Insert Button Value
+function input(e) {
+	const delButton = document.getElementById("btnDel");
+	enterCode.value = enterCode.value + e.value;
+	if (enterCode.value.length >= 4) {
+			for (i = 0; i < 10; i++) {
+			var numbuttons = document.getElementById("btn" + i);
+			numbuttons.disabled = true;
+		}
+	}	
+	console.log(enterCode.value.length);
+}
+
+//Delete Last Value
+function del() {
+	for (i = 0; i < 10; i++) {
+		var numbuttons = document.getElementById("btn" + i);
+		numbuttons.disabled = false;
+}
+    enterCode.value = enterCode.value.substr(0, enterCode.value.length - 1);
+}
+
+// Disable keyboard by adding readonly attribute to field
+// $(document).ready(function() {
+  
+// 	if (Modernizr.touch) {
+
+// 		$('[data-disable-touch-keyboard]').attr('readonly', 'readonly');
+// 	}
+// }
+
+// var field = document.createElement('input');
+// field.setAttribute('type', 'text');
+// field.style.background = "red";
+// document.body.appendChild(field);
+
+// setTimeout(function() {
+//     field.focus();
+//     setTimeout(function() {
+//         field.setAttribute('style', 'display:none;');
+//     }, 1000);
+// }, 1000);
+
+//=====Mobile KeyBoard End=====//
+
+//Game Play Logic
+function gameAction() {
+	SetFocus();
+
 	const right_arrow ='<i class="fa fa-arrow-right"></i>'
 	const newli = document.createElement("LI");
 	const trialss = trialCode.innerHTML + " " + most_recent_trial_message.innerHTML;
@@ -471,13 +552,34 @@ decode.onclick = function(){
 		enterCode.value="";
 	}
 
+	//Append Trials
 	newli.innerHTML= trialss;
 	trial_lists.appendChild(newli);
+
+	//Reactivate Mobile Keyboard
+	for (i = 0; i < 10; i++) {
+        var numbuttons = document.getElementById("btn" + i);
+		numbuttons.disabled = false;
+	}
+}
+	
+//When Decode Button Is Click
+decode.onclick = function(){
+	gameAction();
+
 }
 
+//When Enter Key Is Pressed
+enterCode.addEventListener("keyup",function(event){
+	if(event.keyCode == 13){
+		event.preventDefault();
+		gameAction();
+		}	
+	}
+);
 
-
-
+//Start Timer On Page Load
+window.onload = countDown();
 
 
 
