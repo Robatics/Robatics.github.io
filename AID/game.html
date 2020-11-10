@@ -38,7 +38,7 @@
 
               <div class="headingLeft">
                 <div id="time">
-                  <h4 class="time-display" id="time-left-display">10:00</h4>
+                  <h4 class="time-display" id="time-left-display">5:00</h4>
                 </div>
                 <a class="restart-button" id="start-button">New Game</a>
               </div>
@@ -98,9 +98,10 @@
   
               <div>
                 <form id="enterForm" onsubmit="return false">
-                    <input type="text" id="enterCode" maxlength="4" placeholder="Enter Code" autocomplete="off" data-disable-touch-keyboard>
+                    <div id="enterCodeBtn" class="enterCode" style="height: 30px;"></div>
+                    <input type="text" id="enterCode" class="enterCodeForPc" maxlength="4" placeholder="Enter Code" autocomplete="off" data-disable-touch-keyboard>
                     
-                    <br>
+                    <!-- <br> -->
 
   
               <div id="bottom_message">
@@ -150,6 +151,7 @@
             </div>
           </div>
 
+          <button id="usePcKeyboard">Use KeyBoard</button>
 
     </section>
   

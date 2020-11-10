@@ -138,16 +138,18 @@ hr {
 
 .game-over{
 	position:absolute;
-	top: 0;
+	top: -12%;
+	bottom: ;
 	left: 15.5%;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	font-family: 'Poppins', sans-serif;
 	width: 55%;
-	height: 75vh;	
+	height: 90vh;	
 	margin:7%;
 	padding: 10px;
+	padding-top: 5%;
 	border-radius: 30px;
 	border: 3px solid var(--borders);
 	box-sizing: border-box;
@@ -179,7 +181,7 @@ hr {
 	font-family: 'Poppins', sans-serif;
 	width: 55%;
 	margin:7%;
-	margin-top: 10%;
+	margin-top: 13%;
 	padding: 10px;
 	/* background:var(--theme-color-support); */
 }
@@ -300,6 +302,7 @@ p {
 
 #codeSection {
 	margin: 5% auto;
+	margin-top: 0px !important;
 }
 
 #crakingSection{
@@ -309,8 +312,9 @@ p {
 	flex-direction: column;
 	font-family: 'Poppins', sans-serif;
 	width: 55%;
-	height:75vh;	
+	height:90vh;	
 	margin:7%;
+	margin-top: 0px !important;
 	padding: 10px;
 	border-radius: 30px;
 	border: 3px solid var(--borders);
@@ -445,7 +449,7 @@ p {
 
 
 #gamePlayGadget{
-	margin-top: 10%;
+	margin-top: 5%;
 }
 
 #all_message{
@@ -455,6 +459,7 @@ p {
 	background: var(--theme-color-support);
 	color: var(--font-color-b);
 	margin: 20px auto;
+	margin-top: 0px !important;
 	border-radius: 10px !important;
 	overflow-y:scroll;
 	height: 100px;
@@ -490,6 +495,18 @@ p {
 }
 
 #enterCode{
+	display: none;
+	font-family: 'Poppins', sans-serif;
+	border: none;
+	border: 3px solid var(--theme-color);
+	background: var(--shadow);
+	margin: 10px;
+	text-align:center;
+	border-radius:15px;
+	width: 40%;
+}
+
+#enterCodeBtn{
 	font-family: 'Poppins', sans-serif;
 	border: none;
 	border: 3px solid var(--theme-color);
@@ -545,13 +562,18 @@ p {
 	align-items: center;
 	background-color: var(--theme-color-support);
 	color: var(--font-color-b);
+	margin-top: 0;
 }
 
 #bottom_message p{
 	margin: 5px;
 }
 
-#mobileKeys{
+/* #mobileKeys{
+	display: none;
+} */
+
+#mobileKeys br{
 	display: none;
 }
 
@@ -575,6 +597,20 @@ p {
 	width: 10% !important;
 	color: var(--theme-color-support);
 	background: red;
+	cursor: pointer;
+	outline: none !important;
+	border:none !important;
+}
+
+#usePcKeyboard{
+	position: absolute;
+	top: 48%;
+	right: 28%;
+	border-radius: 5px !important;
+	font-weight: bold;
+	padding: 3px;
+	color: var(--theme-color-support);
+	background:var(--font-color-a);
 	cursor: pointer;
 	outline: none !important;
 	border:none !important;
@@ -685,6 +721,7 @@ p {
 		width: 100%;
 		height: 90vh !important;
 		border: none !important;
+		padding-top: 40%;
 		outline: none;
 		box-shadow: none;
 	}
@@ -772,6 +809,14 @@ p {
 
 	#mobileKeys{
 		display: block;
+	}
+
+	.enterCodeForPc{
+		display: none;
+	}
+
+	#usePcKeyboard{
+		display: none;
 	}
 	
 }
