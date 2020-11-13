@@ -139,7 +139,6 @@ hr {
 .game-over{
 	position:absolute;
 	top: -12%;
-	bottom: ;
 	left: 15.5%;
 	display: flex;
 	align-items: center;
@@ -151,7 +150,7 @@ hr {
 	padding: 10px;
 	padding-top: 5%;
 	border-radius: 30px;
-	border: 3px solid var(--borders);
+	border: none;
 	box-sizing: border-box;
 	box-shadow: 1px 2px 3px var(--shadow);
 	background:var(--theme-transparency);
@@ -333,7 +332,7 @@ p {
       align-items: center;
       justify-content: space-around;
       position: absolute;
-	  left: 20px;
+	  left:25%;
 	  top: 50%;
 	  cursor: pointer !important;
 
@@ -353,6 +352,10 @@ p {
 	
 }
 
+#icons span{
+	font-size:13px;
+}
+
 #icons button:hover, 
 #icons button:focus{
 	background:var(--theme-transparency);
@@ -366,41 +369,214 @@ p {
 	position: relative;
 }
 
-#otherOptions ul{
-	display: none;
-	z-index: 10;
-	top: 10px;
-	left: 30px;
-
+#viewOptions{
+	position:absolute;
+	left: 0%;
+	right: 0%;
+	top: 3%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	font-family: 'Poppins', sans-serif;
+	width:30%;
+	height:85vh;	
+	margin:auto;
+	padding: 10px;
+	padding-top: 0 !important;
+	border: none;
+	outline: none;
+	box-shadow: none;
+	box-sizing: border-box;
+	transition: 1s ease;
+	opacity: 0; 
 }
 
-#otherOptions ul li{
+#viewOptionsInner {
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Poppins', sans-serif;
+	width: 100%;
+	margin-top: 0;
+}
+
+#viewOptions #viewOptionsMessage {
+	position: absolute;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+	margin-top: 0;
+	-webkit-animation: fade-in 800ms ease 1200ms;
+	-moz-animation: fade-in 800ms ease 1200ms;
+	animation: fade-in 800ms ease 1200ms;
+	-webkit-animation-fill-mode: both;
+	-moz-animation-fill-mode: both;
+	animation-fill-mode: both; 
+}
+
+#viewOptions #viewOptionsMessage ul {
+	list-style: none;
+	display:flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+	margin-top: 10% auto;
+	margin-right: 0;
+	width: 70%;
+	padding: 0;
+	padding-right: 0;
+}
+
+#viewOptions #viewOptionsMessage ul li{
 	list-style: none;
 	padding-left:10px;
-	color: var(--theme-color-relation-b);
+	color: var(--theme-color) !important;
+	font-size: 25px !important;
+	cursor: pointer;
+	transition: 2s ease-in;
+} 
+
+#viewOptions #viewOptionsMessage ul span{
+	font-size: 25px !important;
+	padding-left:15px;
+	cursor: pointer;
 }
 
-/* .otherOptionss{
-	display: block;
-	position:absolute;
-	width: 120px;
-	padding: auto;
-	margin-top: 10px;
-	background: var(--theme-transparency);
-	display: flex;
-	flex-direction: column;
-} */
+#viewOptions #viewOptionsMessage ul li:hover, 
+#viewOptions #viewOptionsMessage ul span:hover{
+	color: var(--font-color-a) !important;
+}
 
-#otherOptions:hover ul, #otherOptions:focus ul{
-	display: block;
+
+
+#toEmoji{
+	display: none;
+	background: var(--theme-color);
+	border-radius: 10px;
+	text-decoration: none;
+	color: var(--font-color-b) !important;
+	line-height: 42px;
+	text-align: center;
+	width: 70%;
+	transition: 2s ease-in;
+}
+
+#toEmoji:hover {
+	background: var(--font-color-a);
+	color: var(--font-color-b) !important;
+}
+
+#toEmoji:focus {
+	background: var(--font-color-a);
+	color: var(--font-color-b) !important;
+	outline: none;
+}
+
+
+#HowDiv, 
+#AboutDiv{
 	position:absolute;
-	width: 120px;
-	padding: auto;
-	margin-top: 10px;
-	background: var(--theme-transparency);
+	top: 1%;
+	left: 15.5%;
 	display: flex;
+	align-items: center;
 	flex-direction: column;
+	font-family: 'Poppins', sans-serif;
+	width: 55%;
+	height: 90vh;	
+	margin:7%;
+	margin-top: 0;
+	padding: 10px;
+	padding-top: 3%;
+	border-radius: 30px;
+	border: none;
+	box-sizing: border-box;
+	box-shadow:none;
+	background:var(--theme-color-support);;
+	transition: 1s ease;
+	opacity: 0;
+	z-index: -5;
+	transition: 1s ease;
+	outline: none;
+	cursor: default;
+	overflow-y: scroll;
+}
+
+#AboutDiv{
+	padding-top: 15%;
+}
+
+
+#HowDivContent,
+#AboutDivContent{
+	background: var(--theme-color-support);
+	text-align: center;
+	-webkit-animation: fade-in 800ms ease 1200ms;
+	-moz-animation: fade-in 800ms ease 1200ms;
+	animation: fade-in 800ms ease 1200ms;
+	-webkit-animation-fill-mode: both;
+	-moz-animation-fill-mode: both;
+	animation-fill-mode: both; 
+	color: var(--font-color-b);
+}
+
+#HowDivContent h4, 
+#AboutDivContent h4{
+	margin-left: 0;
+	color: white;
+}
+
+#HowDivContent ul{
+	margin: 0px auto;
+	width: 90%;
+	text-align: left;
+	color: white;
+	list-style: none;
+}
+
+#HowDivContent ul li{
+	color: white;
+	list-style: none;
+	padding-bottom: 10px;
+}
+
+#HowDivContent span, 
+#AboutDivContent span{
+	padding: 20px;
+	color: white;
+	cursor: pointer;
+}
+
+#HowDivContent span:hover, 
+#AboutDivContent span:hover{
 	color: var(--font-color-a);
+}
+
+#AboutDivContent a {
+background: var(--theme-color);
+border-radius: 8px;
+padding: 10px 20px;
+text-decoration: none;
+color: var(--font-color-b);
+height: 50px;
+line-height: 42px;
+cursor: pointer;
+
+} 
+
+#AboutDivContent a:hover {
+	background: var(--font-color-a);
+	border-radius: 8px;
+	padding: 10px 20px;
+	text-decoration: none;
+	color: var(--theme-color-support);
+	height: 50px;
+	line-height: 42px;
 }
 
 
@@ -563,6 +739,7 @@ p {
 	background-color: var(--theme-color-support);
 	color: var(--font-color-b);
 	margin-top: 0;
+	font-size: 20px;
 }
 
 #bottom_message p{
@@ -644,13 +821,14 @@ p {
 		width: 100%;
 		height: 90vh !important;
 		border: none !important;
+		padding-top: 40%;
 		outline: none;
 		box-shadow: none;
 	}
 
 
 	.game-container{
-		padding-top: 20vh;
+		padding-top: 10vh;
 		width: 100%;
 		height: 90vh !important;
 		border: none !important;
@@ -658,27 +836,84 @@ p {
 		box-shadow: none;
 	}
 
+	h1.title {
+		font-size: 32px;
+		margin-top: 0px; 
+		margin-left: 0px;
+	}
+	
+	.container {
+		width: 280px;
+		margin: 0 auto; 
+	}
+	
+	.heading {
+		margin-bottom: 10px; 
+	}
+
+	.headingLeft a{
+		display: none;
+	}
+	
+	.game-intro {
+		width: 55%;
+		display: block;
+		box-sizing: border-box;
+		line-height: 1.65; 
+	}
+
+	.above-game{
+		display: none;
+	}
+
 	#icons{
 		top: 90%;
 		left: 0;
-		bottom: 0;
+		bottom: 50px;
 		flex-direction: row;
 		width: 100%;
 	}
 
-	#otherOptions:focus ul{
-		left: 0px;
-		top: -200%;
-		flex-direction: row;
+	#viewOptions{
+		width: 90%;
+		height: 70vh !important;	
+		margin:auto;
+		padding-top: 5%;
+		border: none;
+		outline: none;
+		box-shadow: none;
+		box-sizing: border-box;
+		background:var(--theme-transparency);
+		opacity:0;
 	}
 
-	#hint:hover #hint_h5{
-		top: -150%;
+	#HowDiv, 
+	#AboutDiv{
+		left:0;
+		margin: 0;
+		width: 100%;
+		height: 100vh !important;
+		border: none !important;
+		padding-top: 10%;
+		outline: none;
+		box-shadow: none;
 	}
 
-	#partialfix:hover #partialfix_h5_1{
-		top: -180%;
-		left: 30%;
+	#AboutDiv{
+		padding-top: 55%;
+	}
+
+
+	#hint:hover #hint_h5, 
+	#hint:focus #hint_h5{
+		top: -10vh;
+		left: 5vw;
+	}
+
+	#partialfix:hover #partialfix_h5_1, 
+	#partialfix:focus #partialfix_h5_1{
+		top: -10vh;
+		left: 35%;
 	}
 
 	#gamePlayGadget{
@@ -688,11 +923,25 @@ p {
 
 	#all_message{
 		width: 90%;
+		margin: 0;
 	}
 
 	#bottom_message{
 		margin-top: 10px;
 	}
+
+	#mobileKeys{
+		display: block;
+	}
+
+	.enterCodeForPc{
+		display: none;
+	}
+
+	#usePcKeyboard{
+		display: none;
+	}
+	
 }
 
 @media screen and (max-width:980px){
@@ -769,17 +1018,40 @@ p {
 	#icons{
 		top: 90%;
 		left: 0;
-		bottom: 0;
+		bottom: 50px;
 		flex-direction: row;
 		width: 100%;
 	}
 
-	#otherOptions:hover ul, 
-	#otherOptions:focus ul{
-		left: 0px;
-		top: -10vh;
-		flex-direction: row;
+	#viewOptions{
+		width: 90%;
+		height: 70vh !important;	
+		margin:auto;
+		padding-top: 5%;
+		border: none;
+		outline: none;
+		box-shadow: none;
+		box-sizing: border-box;
+		background:var(--theme-transparency);
+		opacity:0;
 	}
+
+	#HowDiv, 
+	#AboutDiv{
+		left:0;
+		margin: 0;
+		width: 100%;
+		height: 100vh !important;
+		border: none !important;
+		padding-top: 10%;
+		outline: none;
+		box-shadow: none;
+	}
+
+	#AboutDiv{
+		padding-top: 55%;
+	}
+
 
 	#hint:hover #hint_h5, 
 	#hint:focus #hint_h5{

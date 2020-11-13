@@ -38,7 +38,7 @@
 
               <div class="headingLeft">
                 <div id="time">
-                  <h4 class="time-display" id="time-left-display">5:00</h4>
+                  <h4 class="time-display" id="time-left-display">3:00</h4>
                 </div>
                 <a class="restart-button" id="start-button">New Game</a>
               </div>
@@ -48,38 +48,6 @@
               <p class="game-intro">Use the results to <strong>crack the code</strong></p>  
             </div>
           </div>
-  
-              <div id="icons">
-                
-                <button id="otherOptions"><i class="fa fa-bars"></i>
-  
-                <ul id="options" class="hoverr">
-                  <li id="newgame"><i class="fa fa-gamepad"></i>Newgame</li>
-                  <li id="pause"><i class="fa fa-pause"></i>Pause</li>
-                  <li id="play"><i class="fa fa-play"></i>Play</li>
-                </ul>
-  
-                </button>
-  
-                
-                <button id="hint"> <i class="fa fa-lightbulb hint"></i>
-  
-                  <h5 id="hint_h5" class="hoverr">Get a hint at 40s of your time</h5>
-  
-                </button>
-  
-                
-                <button id="partialfix"><i class="fas fa-puzzle-piece"></i>
-  
-                <h5 id="partialfix_h5_1" class="hoverr">Get two numbers at 1mins of your time</h5>
-                <h5 id="partialfix_h5_2" class="hoverr">Get four numbers at 3mins of your time</h5>
-                
-                </button>
-
-                <button id="Trails_and_Stuff"><i class="fas fa-book"></i>
-  
-              
-              </div>
               
               
             <div id="gamePlayGadget">
@@ -105,7 +73,7 @@
 
   
               <div id="bottom_message">
-                <p id="single_message">CODES <i class="fa fa-arrow-right"></i></p>
+                <p id="single_message">CODES</p><i class="fa fa-arrow-right"></i>
                 <p id="most_recent_trial_message">RESULTS</p>
               </div>
 
@@ -136,6 +104,52 @@
 
             </section>
 
+            <div id="icons">
+                
+              <button id="otherOptions">
+                <i class="fa fa-bars"></i><br>
+                <span>Options</span>
+              </button>
+
+              
+              <button id="hint"> 
+                <i class="fa fa-lightbulb hint"></i><br>
+                <span>1 Hint</span>
+                <h5 id="hint_h5" class="hoverr">Get a hint at 40s of your time</h5>
+              </button>
+
+              
+              <button id="partialfix">
+                <i class="fas fa-puzzle-piece"></i><br>
+                <span>2 Hints</span>
+                <h5 id="partialfix_h5_1" class="hoverr">Get two numbers at 1mins of your time</h5>
+                <h5 id="partialfix_h5_2" class="hoverr">Get four numbers at 3mins of your time</h5>
+              </button>
+
+              <button id="Trails_and_Stuff">
+                <i class="fas fa-book"></i><br>
+                <span>Trials</span>
+              </button>
+
+            
+            </div>
+
+            <div id="viewOptions">
+              <div id="viewOptionsInner">
+                <div id="viewOptionsMessage">
+                  <ul id="options" class="hoverr">
+                    <li id="newgame"><i class="fa fa-gamepad"></i><span>Newgame</span></li>
+                    <!-- <li id="pause"><i class="fa fa-pause"></i><span>Pause</span></li> -->
+                    <li id="how"><i class="fa fa-play"></i><span>How To Play</span></li>
+                    <li id="setings"><i class="fa fa-cogs"></i><span>Settings</span></li>
+                    <button id="toEmoji">Use Emojis</button>
+                    <li id="about"><i class="fa fa-info"></i><span>About</span></li>
+                  
+                  </ul>
+                </div>
+              </div>
+          </div>
+
             <div id="Game_OverDiv" class="game-over">
               <div class="game-container">
                 <div class="game-message">
@@ -150,6 +164,45 @@
                 </div>
             </div>
           </div>
+
+          <div id="HowDiv">
+                <section id="HowDivContent">
+                  
+                  <h4> *****HOW TO PLAY******</h4><br>
+
+                  <ul>
+                  <li>The goal is to guess the code that was generated.</li> 
+                  <li>There are no repeated numbers in the secret code.</li>
+
+                  <li>To test a combination,use the buttons on the screen or use your KeyBoard(For Pc only)</li>
+
+                  <li>Then press the Decode Button or Enter Key(For Pc only) so your code can be tested.</li>
+                  
+                  <li>Some results wil appear below looking like</li>
+
+                      <h6>2564 <i class="fa fa-arrow-right"></i> 1 dead,2 injured,1 alive </h6>
+
+                      <h6> or </h6>
+
+                      <h6>2564 <i class="fa fa-arrow-right"></i>  &#128128; &#129301; &#129301; &#128519;</h6>
+
+
+                  <li><strong>alive or &#128519;:</strong> means one of the numbers you entered is not among the secret code.</li>
+                  <li><strong>injured or &#129301;:</strong> means one the numbers you entered is among the secret code but not in the right position.</li>
+                  <li><strong>dead or &#128128;:</strong> means one the numbers you entered is among the secret code and is in the right position.</li>
+                  <li><span id="backToGameHow"><i class="fa fa-arrow-left"></i>Back to Game</span></li><br><br>
+                </ul>
+
+                 
+          </div>
+
+          <div id="AboutDiv">
+                <section id="AboutDivContent">
+                  <h4>...(c)AID created by Akinmade Richard</h4><br>
+                    <a href="robatics.github">Explore More Projects</a><br><br>
+                    <span id="backToGameAbout"><i class="fa fa-arrow-left"></i>Back to Game</span><br>
+                </section>
+        </div>
 
           <button id="usePcKeyboard">Use KeyBoard</button>
 
