@@ -20,6 +20,18 @@
     <title>AID Game</title>
   </head>
   <body>
+    
+    <audio id="buttonSound" class="sound" autoplay>
+      <source id="buttonSoundSource" src=""></source>
+    </audio>
+
+    <audio id="clickSound" class="sound" autoplay>
+      <source id="clickSoundSource" src=""></source>
+    </audio>
+    <!-- <audio id="buttonSound" class="sound" autoplay>
+      <source id="buttonSoundSource" src=""></source>
+    </audio> -->
+
     <center id="center" class="center">
 
     <!---GAMEPLAY ENTER CODE SECTION-->
@@ -49,9 +61,15 @@
 
 <!--GAMEPLAY START FOOTER SECTION-->
 
-      <footer class="bottom">
+      
+
+      <footer class="bottom" style="display: flex;">
+
+        <button id="homeSettings" style="margin-left: 5%;font-size: 30px;margin-bottom: 0;">
+          <i class="fa fa-cogs"></i>
+        </button>
         
-        <button class="Maker">Created By @Robatics</button>
+        <!-- <button class="Maker" style="margin-left: 20%;">Created By @Robatics</button> -->
 
       </footer>
 
@@ -69,7 +87,7 @@
 
               <div class="headingLeft">
                 <div id="time">
-                  <h4 class="time-display" id="time-left-display">3:00</h4>
+                  <h4 class="time-display" id="time-left-display">1:00</h4>
                   <span class="space"></span>
                   <h5 id="moves">Moves:<span id="movesCount">8</span></h5>
                 </div>
@@ -103,21 +121,22 @@
                 <p id="most_recent_trial_message">RESULTS</p>
               </div>
 
+
               <div id="mobileKeys">
-                <input id="btn1" class="numbtn" type="button" value="1" onclick="input(this);" />
-                <input id="btn2" class="numbtn" type="button" value="2" onclick="input(this);" />
-                <input id="btn3" class="numbtn" type="button" value="3" onclick="input(this);" />
-                <input id="btn4" class="numbtn" type="button" value="4" onclick="input(this);" />
+                <input id="btn1" class="numbtn" data-sound="1.wav" type="button" value="1" onclick="input(this);soundit(this);" />
+                <input id="btn2" class="numbtn" data-sound="2.wav" type="button" value="2" onclick="input(this);soundit(this);" />
+                <input id="btn3" class="numbtn" data-sound="3.wav" type="button" value="3" onclick="input(this);soundit(this);" />
+                <input id="btn4" class="numbtn" data-sound="4.wav" type="button" value="4" onclick="input(this);soundit(this);" />
                 <br />
-                <input id="btn5" class="numbtn" type="button" value="5" onclick="input(this);" />
+                <input id="btn5" class="numbtn" data-sound="5.wav" type="button" value="5" onclick="input(this);soundit(this);" />
                 
-                <input id="btn6" class="numbtn" type="button" value="6" onclick="input(this);" />
+                <input id="btn6" class="numbtn" data-sound="6.wav" type="button" value="6" onclick="input(this);soundit(this);" />
                 
-                <input id="btn7" class="numbtn" type="button" value="7" onclick="input(this);" />
-                <input id="btn8" class="numbtn" type="button" value="8" onclick="input(this);" />
-                <input id="btn9" class="numbtn" type="button" value="9" onclick="input(this);" />
-                <input id="btn0" class="numbtn" type="button" value="0" onclick="input(this)" />
-                <input id="btnDel" type="button" value="X" onclick="del();" />
+                <input id="btn7" class="numbtn" data-sound="7.wav" type="button" value="7" onclick="input(this);soundit(this);" />
+                <input id="btn8" class="numbtn" data-sound="8.wav" type="button" value="8" onclick="input(this);soundit(this);" />
+                <input id="btn9" class="numbtn" data-sound="9.wav" type="button" value="9" onclick="input(this);soundit(this);" />
+                <input id="btn0" class="numbtn" data-sound="0.wav" type="button" value="0" onclick="input(this);soundit(this);" />
+                <input id="btnDel" data-sound="clear.wav" type="button" value="X" onclick="del();clearit();" />
              </div>
 
                  
@@ -169,9 +188,17 @@
                     <li id="newgame"><i class="fa fa-gamepad"></i><span>Newgame</span></li>
                     <!-- <li id="pause"><i class="fa fa-pause"></i><span>Pause</span></li> -->
                     <li id="how"><i class="fa fa-play"></i><span>How To Play</span></li>
+                    <li id="howHome"><i class="fa fa-play"></i><span>How To Play</span></li>
+
                     <li id="setings"><i class="fa fa-cogs"></i><span>Settings</span></li>
                     <button id="toEmoji">Use Emojis</button>
+                    
                     <li id="about"><i class="fa fa-info"></i><span>About</span></li>
+                    <li id="aboutHome"><i class="fa fa-info"></i><span>About</span></li>
+
+                    <li id="homeSettingsBackButton" style="margin-left: 5%;font-size: 30px;margin-bottom: 0;">
+                      <i class="fa fa-arrow-left"></i>
+                    </li>
                   
                   </ul>
                 </div>
@@ -186,8 +213,8 @@
                   <div class="best-container">1:20</div>
                   <br><br>
                   <div class="lower">
-                    <a class="keep-playing-button">Keep going</a>
-                    <a class="retry-button">Try again</a>
+                    <a class="keep-playing-button" onclick="clickit();">Keep going</a>
+                    <a class="retry-button" onclick="clickit();">Try again</a>
                   </div>
                 </div>
             </div>
@@ -218,7 +245,8 @@
                   <li><strong>alive or &#128519;:</strong> means one of the numbers you entered is not among the secret code.</li>
                   <li><strong>injured or &#129301;:</strong> means one the numbers you entered is among the secret code but not in the right position.</li>
                   <li><strong>dead or &#128128;:</strong> means one the numbers you entered is among the secret code and is in the right position.</li>
-                  <li><span id="backToGameHow"><i class="fa fa-arrow-left"></i>Back to Game</span></li><br><br>
+                  <li><span id="backToGameHow"><i class="fa fa-arrow-left"></i>Back to Game</span></li>
+                  <li><span id="backToGameHowHome"><i class="fa fa-arrow-left"></i>Back to Game</span></li><br><br>
                 </ul>
 
                  
@@ -227,8 +255,9 @@
           <div id="AboutDiv">
                 <section id="AboutDivContent">
                   <h4>...(c)AID created by Akinmade Richard</h4><br>
-                    <a href="robatics.github">Explore More Projects</a><br><br>
+                    <a href="https://www.robatics.github">Explore More Projects</a><br><br>
                     <span id="backToGameAbout"><i class="fa fa-arrow-left"></i>Back to Game</span><br>
+                    <span id="backToGameAboutHome"><i class="fa fa-arrow-left"></i>Back to Game</span><br>
                 </section>
         </div>
 

@@ -1,6 +1,16 @@
 
 //=====DOM FECTH=====//
 
+
+//INGAME AUDIO ELEMENTS
+const allBtns = document.getElementsByTagName('button');
+
+const buttonSound = document.getElementById('buttonSound');
+const buttonSoundSource = document.getElementById('buttonSoundSource');
+
+const clickSound = document.getElementById('clickSound');
+const clickSoundSource = document.getElementById('clickSoundSource');
+
 //INGAME MAIN
 const enterCode = document.getElementById('enterCode');
 
@@ -35,7 +45,13 @@ const Game_OverDiv = document.getElementById('Game_OverDiv');
 
 
 //WELCOME SCREEN
-const playGame= document.getElementById('playGame');
+const playGame = document.getElementById('playGame');
+const homeSettings = document.getElementById('homeSettings');
+const homeSettingsBackButton = document.getElementById('homeSettingsBackButton');
+const backToGameHowHome = document.getElementById('backToGameHowHome');
+const backToGameAboutHome = document.getElementById('backToGameAboutHome');
+const howHome = document.getElementById('howHome');
+const aboutHome = document.getElementById('aboutHome');
 
 //INGAME SIDEBAR
 
@@ -162,6 +178,7 @@ function OutOfMoves() {
 	inGame_movesCount.innerHTML = movedrop - cnt;
 	if (cnt >= movedrop) {
 		gameOverCond("Try Again","Out Of Moves");
+		gameOverSong();
 	}
 }
 
@@ -209,6 +226,7 @@ function startTimer(duration, display) {
 			finishedTime.innerHTML = time_display.innerHTML;
 			bestTime.innerHTML = time_display.innerHTML;
 			pauser();
+			gameOverSong();
 		}
 
 		//CONDITION TO HIDE HINTS BUTTONS
@@ -553,6 +571,12 @@ CountFun();
 
 });
 
+for (i = 0; i < 10; i++) {
+allBtns[i].addEventListener('click', () => {
+	clickit();
+});
+}
+
 //Play Button
 playGame.addEventListener('click', () => {
 	startSectionDiv.style.display= "none";
@@ -561,9 +585,107 @@ playGame.addEventListener('click', () => {
 	inGame_icons.style.opacity = "1";
 	usePcKeyboard.style.opacity = "1";
 	startJSfunc(); 
+	
 });
 
 
+homeSettings.addEventListener('click', () => {
+
+	startSectionDiv.style.opacity = '0';
+	startSectionDiv.style.zIndex = '-60';
+
+	inGame_otherOptionsViewOptions.style.opacity = '1';
+	inGame_otherOptionsViewOptions.style.zIndex = '60';
+	howHome.style.display = "block";
+	aboutHome.style.display = "block";
+	backToGameHowHome.style.display = "block";
+	backToGameAboutHome.style.display = "block";
+	inGame_otherOptionsHow.style.display = "none";
+	inGame_otherOptionsAbout.style.display = "none";
+	inGame_otherOptionsbackToGameHow.style.display = "none";
+	inGame_otherOptionsbackToGameAbout.style.display = "none";
+	homeSettingsBackButton.style.opacity = '1';
+	homeSettingsBackButton.style.zIndex = '60';
+});
+
+
+
+//Back to Game Button From Home Settings
+homeSettingsBackButton.addEventListener('click', () => {
+
+	inGame_otherOptionsViewOptions.style.opacity = '0';
+	inGame_otherOptionsViewOptions.style.zIndex = '-40';
+
+	usePcKeyboard.style.opacity = '0';
+	crakingSectionDiv.style.opacity = '0';
+	usePcKeyboard.style.zIndex = '-600';
+	crakingSectionDiv.style.zIndex = '-600';
+
+	startSectionDiv.style.opacity = '1';
+	startSectionDiv.style.zIndex = '400';
+	startSectionDiv.style.display = "block";
+
+});
+
+howHome.addEventListener('click', () => {
+
+	startSectionDiv.style.opacity = '0';
+	startSectionDiv.style.zIndex = '-400';
+	startSectionDiv.style.display = "none";
+	usePcKeyboard.style.opacity = '0';
+	crakingSectionDiv.style.opacity = '0';
+	inGame_otherOptionsViewOptions.style.opacity = '0';
+	inGame_otherOptionsViewOptions.style.zIndex = '-40';
+	inGame_icons.style.opacity = '0';
+	inGame_icons.style.zIndex = '-40';
+	inGame_otherOptionsHowDiv.style.opacity='1';
+	inGame_otherOptionsHowDiv.style.zIndex = '40';
+
+});
+
+aboutHome.addEventListener('click', () => {
+	startSectionDiv.style.opacity = '0';
+	startSectionDiv.style.zIndex = '-400';
+	startSectionDiv.style.display = "none";
+	usePcKeyboard.style.opacity = '0';
+	crakingSectionDiv.style.opacity = '0';
+	inGame_otherOptionsViewOptions.style.opacity = '0';
+	inGame_otherOptionsViewOptions.style.zIndex = '-40';
+	inGame_icons.style.opacity = '0';
+	inGame_icons.style.zIndex = '-40';
+
+	inGame_otherOptionsAboutDiv.style.opacity='1';
+	inGame_otherOptionsAboutDiv.style.zIndex = '40';
+	
+});
+
+
+backToGameHowHome.addEventListener('click', () => {
+	startSectionDiv.style.opacity = '0';
+	startSectionDiv.style.zIndex = '-400';
+	inGame_icons.style.opacity = '0';
+	inGame_icons.style.zIndex = '-40';
+	inGame_otherOptionsHowDiv.style.opacity='0';
+	inGame_otherOptionsHowDiv.style.zIndex = '-40';
+
+	inGame_otherOptionsViewOptions.style.opacity = '1';
+	inGame_otherOptionsViewOptions.style.zIndex = '40';
+	
+});
+
+backToGameAboutHome.addEventListener('click', () => {
+	startSectionDiv.style.opacity = '0';
+	startSectionDiv.style.zIndex = '-400';
+
+	inGame_icons.style.opacity = '0';
+	inGame_icons.style.zIndex = '-40';
+	inGame_otherOptionsAboutDiv.style.opacity='0';
+	inGame_otherOptionsAboutDiv.style.zIndex = '-40';
+
+	inGame_otherOptionsViewOptions.style.opacity = '1';
+	inGame_otherOptionsViewOptions.style.zIndex = '40';
+
+});
 
 //Try Again Buttons
 retryButton.addEventListener('click', () => {
@@ -722,6 +844,26 @@ function input(e) {
 		}
 	}	
 	// console.log(enterCodeBtn.innerHTML.length);
+}
+
+function soundit(e) {
+	buttonSoundSource.src = "sounds/" + e.getAttribute('data-sound');
+	buttonSound.load();
+}
+
+function clickit() {
+	clickSoundSource.src = "sounds/click.wav";
+	clickSound.load();
+}
+
+function clearit() {
+	clickSoundSource.src = "sounds/cancel.wav";
+	clickSound.load();
+}
+
+function gameOverSong() {
+	clickSoundSource.src = "sounds/gameover.wav";
+	clickSound.load();
 }
 
 //Delete Last Value
@@ -1807,6 +1949,7 @@ usePcKeyboard.addEventListener('click', () => {
 	toggleStyle(decode, 'display', 'none', 'block');
 	toggleStyle(decodeTwo, 'display','block','none');
 	toggleInnerHtml(usePcKeyboard,'Use Buttons','Use KeyBoard');
+	
 });
 
 //Start Timer On Page Load
@@ -1816,6 +1959,6 @@ window.onload = crakingSectionDiv.style.opacity = "0";
 window.onload = inGame_icons.style.opacity = "0";
 window.onload = usePcKeyboard.style.opacity = "0";
 
-
+// window.onload = buttonSound.play();
 
 

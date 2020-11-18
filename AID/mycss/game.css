@@ -47,6 +47,8 @@ body {
 	margin-top: 20%;
 }
 
+
+
 /*---GAMEPLAY START SECTION---*/
 
  #startSection {
@@ -85,6 +87,7 @@ body {
 	padding: 1%;
 	border-radius: 50px; 
 	box-sizing: border-box;
+	
 } 
 
 #startSection h1 br{
@@ -107,6 +110,8 @@ body {
 	border-radius: 20px;
 	outline: none;
 	margin-top: 10vh !important;
+	animation: sweller 4s infinite ease-in-out;
+	transition: 2s ease-in-out;
 
 }
 
@@ -124,6 +129,14 @@ body {
 	outline: none;
 }
 
+@keyframes sweller{
+	from{
+		padding: 20px;
+	}
+	to{
+		padding: 10px;
+	}
+}
 
 
 
@@ -139,7 +152,7 @@ body {
 
 }
 
-
+/* 
 .bottom button{
 	background: var(--theme-color);
 	border-radius: 5px;
@@ -154,9 +167,9 @@ body {
 	outline: none !important;
 	border:none !important;
 
-}
+} */
 
-.bottom button:hover{
+/* .bottom button:hover{
 	background:var(--font-color-a);
 	color: var(--theme-color-support);
 }
@@ -166,6 +179,37 @@ body {
 	color: var(--theme-color-support);
 	border: none;
 	outline: none;
+} */
+
+
+#homeSettings{
+	background:var(--theme-transparency);
+	color: var(--font-color-a);
+	outline: none;
+	border: none;
+	cursor: pointer;
+	
+}
+
+#homeSettings:hover, 
+#homeSettings:focus{
+	background:var(--theme-transparency);
+	color: var(--theme-color);
+	outline: none;
+	border: none;
+	cursor: pointer;
+}
+
+#homeSettingsBackButton{
+	opacity: 0;
+	z-index: -400;
+}
+
+#howHome, 
+#aboutHome, 
+#backToGameAboutHome, 
+#backToGameHowHome{
+	display: none;
 }
 
 
