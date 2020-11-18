@@ -1,3 +1,98 @@
+let timeCounter;
+let startingMinutes = 3;
+let startingSeconds = 60;
+let time = startingMinutes * 60;
+
+function countDown(speed=1000){
+	var timeCounter = setInterval(updateCountdown,speed);
+}
+
+function updateCountdown(){
+	let minutes = Math.floor(time/60);
+	let seconds = time % 60;
+
+	seconds = seconds < 10 ? '0' + seconds : seconds;
+
+	time_display.innerHTML = `${minutes}:${seconds}`;
+
+	if(seconds <= 0 && minutes <= 0){
+		
+		crakingSectionDiv.style.opacity='0.4';
+		usePcKeyboard.style.opacity='0.4';
+		Game_OverDiv.style.opacity='1';
+		Game_OverDiv.style.zIndex ='40';
+		inGame_icons.style.opacity = '0';
+		inGame_otherOptionsViewOptions.style.opacity = '0';
+		time_display.innerHTML = `00:00`
+		clearInterval(timeCounter);
+		timeCounter = null;
+	}
+	time--;
+}
+
+
+//Keep Playing Button
+keepPlayingButton.addEventListener('click', () => {
+	time = 1 * 60;;
+	countDown(10000);
+	
+	Game_OverDiv.style.opacity='0';
+	Game_OverDiv.style.zIndex ='-5';
+	crakingSectionDiv.style.opacity='1';
+	inGame_icons.style.opacity = '1';
+	
+
+	var cnt=0;
+	function CountFun() {
+	cnt = parseInt(cnt)+parseInt(1);
+	if (cnt >= 1) {
+		keepPlayingButton.style.display = "none";
+		retryButton.style.marginLeft = "30%";
+	};
+}
+
+CountFun();
+
+});
+
+
+
+// window.onload = countDown();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //=====DOM FECTH=====//
 
@@ -7,8 +102,6 @@ const enterCode = document.getElementById('enterCode');
 const enterCodeBtn = document.getElementById('enterCodeBtn');
 
 const decode = document.getElementById('decode');
-
-const decodeTwo = document.getElementById('decodeTwo');
 
 const most_recent_trial_message = document.getElementById('most_recent_trial_message');
 
@@ -29,13 +122,9 @@ const usePcKeyboard = document.getElementById("usePcKeyboard");
 
 //GAME MAJOR DIVS
 const startCrackingGame = document.getElementById('codeSection');
-const startSectionDiv = document.getElementById('startSection');
 const crakingSectionDiv = document.getElementById('crakingSection');
 const Game_OverDiv = document.getElementById('Game_OverDiv');
 
-
-//WELCOME SCREEN
-const playGame= document.getElementById('playGame');
 
 //INGAME SIDEBAR
 
@@ -70,7 +159,6 @@ const inGame_Trails_and_Stuff = document.getElementById('Trails_and_Stuff');
 
 //INGAME ELEMENTS
 const inGame_time = document.getElementById('time');
-const inGame_movesCount = document.getElementById('movesCount');
 const inGame_form = document.getElementById('enterForm');
 const inGame_all_message = document.getElementById('all_message');
 const inGame_decode_input = document.getElementById('decode');
@@ -97,6 +185,8 @@ const restart_button = document.getElementById('start-button');
 
 let theCode;
 const right_arrow ='<i class="fa fa-arrow-right"></i>';
+let GrandResult;
+
 //=====END OF VARIABLES DECLARATION=====//
 
 ///==============================///
@@ -122,11 +212,10 @@ function toggleInnerHtml(el, inner1, inner2) {
 
 //=====GAMEOVER CONDITIONS FUNCTIONALITY=====//
 function gameOverCond(btnmessage,message) {
-	// time_display.style.display= "none";
+	clearInterval(timeCounter);
+	time_display.innerHTML = "00:00";
 	crakingSectionDiv.style.opacity='0.4';
 	usePcKeyboard.style.opacity='0.4';
-	enterCode.style.display= "none";
-	enterCodeBtn.style.display= "none";
 	Game_OverDiv.style.opacity='1';
 	Game_OverDiv.style.zIndex ='40';
 	inGame_icons.style.opacity = '0';
@@ -135,22 +224,18 @@ function gameOverCond(btnmessage,message) {
 	retryButton.style.marginLeft = "35%";
 	retryButton.innerHTML = btnmessage;
 	timeUp.innerHTML = message + "<br><span style='font-size:20px'>Secret Code " + right_arrow + " " + theCode + "</span>";
-	finishedTime.innerHTML = time_display.innerHTML;
-	bestTime.innerHTML = time_display.innerHTML;
-	pauser();
+
 }
 
 var cnt=0;
-var movedrop = 8;
-
 function OutOfMoves() {
 	
 	cnt = parseInt(cnt)+parseInt(1);
-	inGame_movesCount.innerHTML = movedrop - cnt;
-	if (cnt >= 8) {
+	if (cnt >= 9) {
 		gameOverCond("Try Again","Out Of Moves");
 	}
 }
+
 
 //=====GAMEOVER CONDITIONS FUNCTIONALITY=====//
 
@@ -158,76 +243,43 @@ function OutOfMoves() {
 
 //=====TIMING=====//
 //Count Down
+let timeCounter;
+let startingMinutes = 3;
+let startingSeconds = 60;
+let time = startingMinutes * 60;
 
-function startTimer(duration, display) {
-    var start = Date.now(),
-        diff,
-        minutes,
-        seconds;
-
-    function timer() {
-        // get the number of seconds that have elapsed since 
-        // startTimer() was called
-        diff = duration - (((Date.now() - start) / 1000) | 0);
-
-        // does the same job as parseInt truncates the float
-        minutes = (diff / 60) | 0;
-        seconds = (diff % 60) | 0;
-
-        minutes = minutes < 10 ? minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-
-        display.textContent = minutes + ':' + seconds;
-
-        if (diff <= 0) {
-            // add one second so that the count down starts at the full duration
-            // example 05:00 not 04:59
-            start = Date.now() + 1000;
-		}
-		
-		if(seconds <= 0 && minutes <= 0){
-		
-			crakingSectionDiv.style.opacity='0.4';
-			usePcKeyboard.style.opacity='0.4';
-			Game_OverDiv.style.opacity='1';
-			Game_OverDiv.style.zIndex ='40';
-			inGame_icons.style.opacity = '0';
-			inGame_otherOptionsViewOptions.style.opacity = '0';
-			finishedTime.innerHTML = time_display.innerHTML;
-			bestTime.innerHTML = time_display.innerHTML;
-			pauser();
-		}
-    };
-
-    // don't want to wait a full second before the timer starts
-    timer();
-    window.myTimer = setInterval(timer, 1000);
-
-
+function countDown(speed=1000){
+	var timeCounter = setInterval(updateCountdown,speed);
 }
 
-function pauser() {
-    if(window.myTimer) {
-        clearInterval(window.myTimer);
-        window.myTimer = null;
-    }
+function updateCountdown(){
+	let minutes = Math.floor(time/60);
+	let seconds = time % 60;
+
+	seconds = seconds < 10 ? '0' + seconds : seconds;
+
+	time_display.innerHTML = `${minutes}:${seconds}`;
+
+	if(seconds <= 0 && minutes <= 0){
+		
+		crakingSectionDiv.style.opacity='0.4';
+		usePcKeyboard.style.opacity='0.4';
+		Game_OverDiv.style.opacity='1';
+		Game_OverDiv.style.zIndex ='40';
+		inGame_icons.style.opacity = '0';
+		inGame_otherOptionsViewOptions.style.opacity = '0';
+		time_display.innerHTML = `00:00`
+		clearInterval(timeCounter);
+		timeCounter = null;
+	}
+	time--;
 }
-
-
-let time = 2; 
-
-function startJSfunc() {
-    var fiveMinutes = 60 * time,
-    display = document.querySelector('#time');
-	startTimer(fiveMinutes, time_display);
-
-};
 
 
 //Keep Playing Button
 keepPlayingButton.addEventListener('click', () => {
-	time = 0.5;
-	startJSfunc();
+	time = 1 * 60;;
+	countDown(10000);
 	
 	Game_OverDiv.style.opacity='0';
 	Game_OverDiv.style.zIndex ='-5';
@@ -241,24 +293,12 @@ keepPlayingButton.addEventListener('click', () => {
 	if (cnt >= 1) {
 		keepPlayingButton.style.display = "none";
 		retryButton.style.marginLeft = "30%";
-		
 	};
 }
 
 CountFun();
 
 });
-
-//Play Button
-playGame.addEventListener('click', () => {
-	startSectionDiv.style.display= "none";
-	crakingSectionDiv.style.opacity = "1";
-	
-	inGame_icons.style.opacity = "1";
-	usePcKeyboard.style.opacity = "1";
-	startJSfunc(); 
-});
-
 
 
 //Try Again Buttons
@@ -273,7 +313,6 @@ restart_button.addEventListener('click', () => {
 inGame_otherOptionsNewgame.addEventListener('click', () => {
 	location.reload();
 });
-
 
 //=====END OF TIMING=====//
 
@@ -536,7 +575,7 @@ let resultsForEmoji = [threeIoneAForEmoji,twoItwoAForEmoji,oneIthreeAForEmoji,
 				twoDtwoAForEmoji,obeDthreeIForEmoji,oneDthreeAForEmoji,twoDtwoIForEmoji];
 
 
-let GrandResult = results;
+GrandResult = results;
 
 
 //=====End Of Results Display=====//
@@ -550,19 +589,19 @@ function gameAction() {
 	
 	let screen = enterCodeBtn.innerHTML.split("");
 
-	w = screen[0];
-	x = screen[1];
-	y = screen[2];
-	z = screen[3];
+	var w = screen[0];
+	var x = screen[1];
+	var y = screen[2];
+	var z = screen[3];
 
-	var f = String(gen4[0]);
-	var g = String(gen4[1]);
-	var h = String(gen4[2]);
-	var i = String(gen4[3]);
+	var f = String(5);
+	var g = String(3);
+	var h = String(2);
+	var i = String(7);
 
 	var j = [f,g,h,i];
 
-	theCode = f + g + h + i;
+	theCode = f + g + i + h;
 
 	trialCode.innerHTML = enterCodeBtn.innerHTML;
 
@@ -575,83 +614,68 @@ function gameAction() {
 	if(w==x ||  w==y || w==z || x==y || x==z || y==z){
 		most_recent_trial_message.innerHTML = "Repetition!! Change number";
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	//~3 injured,1 alive
 	else if(WinJ && XinJ && YinJ && !ZinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[0];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(WinJ && XinJ && ZinJ && !YinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[0];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(WinJ && YinJ && ZinJ && !XinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[0];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(XinJ && YinJ && ZinJ && !WinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[0];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	// ~2 injured,2 alive
 	else if(!YinJ && !ZinJ && WinJ && XinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[1];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(!XinJ && !ZinJ && WinJ && YinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[1];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(!XinJ && !YinJ && WinJ && ZinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[1];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(!WinJ && !ZinJ && XinJ && YinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[1];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(!WinJ && !YinJ && XinJ && ZinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[1];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(!WinJ && !XinJ && YinJ && ZinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[1];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	//~1 injured,3 alive
 	else if(!XinJ && !YinJ && !ZinJ && WinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[2];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(!WinJ && !YinJ && !ZinJ && XinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[2];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(!WinJ && !XinJ && !ZinJ && YinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[2];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(!WinJ && !XinJ && !YinJ && ZinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[2];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 
@@ -659,43 +683,36 @@ function gameAction() {
 	else if(!WinJ && !XinJ && !YinJ && !ZinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[3];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	//~ALL INJURED
 	else if(WinJ && XinJ && YinJ && ZinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[4];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	//~ALL DEAD
 	else if(w==f && x==g && y==h && z==i){
 		most_recent_trial_message.innerHTML = GrandResult[5];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	//~3 dead,1 alive
 	else if(w==f && x==g && y==h && !ZinJ){
 		most_recent_trial_message.innerHTML = GrandResult[6];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(w==f && x==g && z==i && !YinJ){
 		most_recent_trial_message.innerHTML = GrandResult[6];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(w==f && y==h && z==i && XinJ){
 		most_recent_trial_message.innerHTML = GrandResult[6];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(x==g && y==h && z==i && !WinJ){
 		most_recent_trial_message.innerHTML = GrandResult[6];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 
@@ -703,130 +720,106 @@ function gameAction() {
 	else if(WinJ && !XinJ && w!=f && y==h && z==i){
 		most_recent_trial_message.innerHTML = GrandResult[7];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(WinJ && !YinJ && w!=f && x==g && z==i){
 		most_recent_trial_message.innerHTML = GrandResult[7];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(WinJ && !ZinJ && w!=f && x==g && y==h){
 		most_recent_trial_message.innerHTML = GrandResult[7];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	else if(XinJ && !WinJ && x!=g && y==h && z==i){
 		most_recent_trial_message.innerHTML = GrandResult[7];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(XinJ && !YinJ && x!=g && w==f && z==i){
 		most_recent_trial_message.innerHTML = GrandResult[7];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(XinJ && !ZinJ && x!=g && w==f && y==h){
 		most_recent_trial_message.innerHTML = GrandResult[7];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	else if(YinJ && !WinJ && y!=h && x==g && z==i){
 		most_recent_trial_message.innerHTML = GrandResult[7];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(YinJ && !XinJ && y!=h && w==f && z==i){
 		most_recent_trial_message.innerHTML = GrandResult[7];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(YinJ && !ZinJ && y!=h && w==f && x==g){
 		most_recent_trial_message.innerHTML = GrandResult[7];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	else if(ZinJ && !WinJ && z!=i && x==g && y==h){
 		most_recent_trial_message.innerHTML = GrandResult[7];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(ZinJ && !XinJ && z!=i && w==f && y==h){
 		most_recent_trial_message.innerHTML = GrandResult[7];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(ZinJ && !YinJ && z!=i && w==f && x==g){
 		most_recent_trial_message.innerHTML = GrandResult[7];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	//~1 dead,2 injured,1 ALIVE
 	else if(XinJ && YinJ && !ZinJ && w==f && x!=g && y!=h){
 		most_recent_trial_message.innerHTML = GrandResult[8];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(XinJ && ZinJ && !YinJ && w==f && x!=g && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[8];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(YinJ && ZinJ && !XinJ && w==f && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[8];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	else if(WinJ && YinJ && !ZinJ && x==g && w!=f && y!=h){
 		most_recent_trial_message.innerHTML = GrandResult[8];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(WinJ && ZinJ && !YinJ && x==g && w!=f && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[8];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(YinJ && ZinJ && !WinJ && x==g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[8];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	
 	else if(WinJ && XinJ && !ZinJ && y==h && w!=f && x!=g){
 		most_recent_trial_message.innerHTML = GrandResult[8];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(WinJ && ZinJ && !XinJ && y==h && w!=f && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[8];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(XinJ && ZinJ && !WinJ && y==h && x!=g && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[8];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	
 	else if(WinJ && XinJ && !YinJ && z==i && w!=f && x!=i){
 		most_recent_trial_message.innerHTML = GrandResult[8];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(WinJ && YinJ && !XinJ && z==i && w!=f && y!=h){
 		most_recent_trial_message.innerHTML = GrandResult[8];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(XinJ && YinJ && !WinJ && z==i && x!=g && y!=h){
 		most_recent_trial_message.innerHTML = GrandResult[8];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	
 
@@ -834,65 +827,53 @@ function gameAction() {
 	else if(WinJ && XinJ && !YinJ && !ZinJ && w==f && x!=g){
 		most_recent_trial_message.innerHTML = GrandResult[9];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(WinJ && YinJ && !XinJ && !ZinJ && w==f && y!=h){
 		most_recent_trial_message.innerHTML = GrandResult[9];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(WinJ && ZinJ && !XinJ && !YinJ && w==f && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[9];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	else if(XinJ && WinJ && !YinJ && !ZinJ && x==g && w!=f){
 		most_recent_trial_message.innerHTML = GrandResult[9];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(XinJ && YinJ && !WinJ && !ZinJ && x==g && y!=h){
 		most_recent_trial_message.innerHTML = GrandResult[9];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(XinJ && ZinJ && !WinJ && !YinJ && x==g && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[9];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	else if(YinJ && WinJ && !XinJ && !ZinJ && y==h && w!=f){
 		most_recent_trial_message.innerHTML = GrandResult[9];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(YinJ && XinJ && !WinJ && !ZinJ && y==h && x!=g){
 		most_recent_trial_message.innerHTML = GrandResult[9];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(YinJ && ZinJ && !WinJ && !XinJ && y==h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[9];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	else if(ZinJ && WinJ && !XinJ && !YinJ && z==i && w!=f){
 		most_recent_trial_message.innerHTML = GrandResult[9];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(ZinJ && XinJ && !WinJ && !YinJ && z==i && x!=g){
 		most_recent_trial_message.innerHTML = GrandResult[9];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(ZinJ && YinJ && !WinJ && !XinJ && z==i && y!=h){
 		most_recent_trial_message.innerHTML = GrandResult[9];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 
@@ -900,32 +881,26 @@ function gameAction() {
 	else if(WinJ && XinJ && !YinJ && !ZinJ && w==f && x==g){
 		most_recent_trial_message.innerHTML = GrandResult[10];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(WinJ && YinJ && !XinJ && !ZinJ && w==f && y==h){
 		most_recent_trial_message.innerHTML = GrandResult[10];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(WinJ && ZinJ && !XinJ && !YinJ && w==f && z==i){
 		most_recent_trial_message.innerHTML = GrandResult[10];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(XinJ && YinJ && !WinJ && !ZinJ && x==g && y==h){
 		most_recent_trial_message.innerHTML = GrandResult[10];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(XinJ && ZinJ && !WinJ && !YinJ && x==g && z==i){
 		most_recent_trial_message.innerHTML = GrandResult[10];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(YinJ && ZinJ && !WinJ && !XinJ && y==h && z==i){
 		most_recent_trial_message.innerHTML = GrandResult[10];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 
@@ -933,22 +908,18 @@ function gameAction() {
 	else if(XinJ && YinJ && ZinJ && x!=g && y!=h && z!=i && w==f){
 		most_recent_trial_message.innerHTML = GrandResult[11];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(WinJ && YinJ && ZinJ && w!=f && y!=h && z!=i && x==g){
 		most_recent_trial_message.innerHTML = GrandResult[11];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(WinJ && XinJ && ZinJ && w!=f && x!=g && z!=i && y==h){
 		most_recent_trial_message.innerHTML = GrandResult[11];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(WinJ && XinJ && YinJ && w!=f && x!=g && y!=h && z==i){
 		most_recent_trial_message.innerHTML = GrandResult[11];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 
@@ -956,22 +927,18 @@ function gameAction() {
 	else if(!XinJ && !YinJ && !ZinJ && w==f){
 		most_recent_trial_message.innerHTML = GrandResult[12];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(!WinJ && !YinJ && !ZinJ && x==g){
 		most_recent_trial_message.innerHTML = GrandResult[12];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(!WinJ && !XinJ && !ZinJ && y==h){
 		most_recent_trial_message.innerHTML = GrandResult[12];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(!WinJ && !XinJ && !YinJ && z==i){
 		most_recent_trial_message.innerHTML = GrandResult[12];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 
@@ -979,32 +946,26 @@ function gameAction() {
 	else if(w==f && x==g && YinJ && ZinJ && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[13];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(w==f && y==h && XinJ && ZinJ && x!=g && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[13];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(w==f && z==i && XinJ && YinJ && x!=g && y!=h){
 		most_recent_trial_message.innerHTML = GrandResult[13];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(x==g && y==h && WinJ && ZinJ && w!=f && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[13];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(x==g && z==i && WinJ && YinJ && w!=f && y!=h){
 		most_recent_trial_message.innerHTML = GrandResult[13];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 	else if(y==h && z==i && WinJ && XinJ && w!=f && x!=g){
 		most_recent_trial_message.innerHTML = GrandResult[13];
 		enterCodeBtn.innerHTML="";
-		enterCode.value="";
 	}
 
 	//Append Trials
@@ -1017,10 +978,10 @@ function gameAction() {
 		numbuttons.disabled = false;
 	}
 
-	if (trialCode.innerHTML == theCode) {
+	// if (trialCode.innerHTML == theCode) {
 
-		gameOverCond("Play Again","Code Cracked");
-	}
+	// 	gameOverCond("Play Again","Code Cracked");
+	// }
 
 	console.log(theCode);
 }
@@ -1047,7 +1008,7 @@ function gameActionPc() {
 
 	var j = [f,g,h,i];
 
-	theCode = f + g + h + i;
+	var theCode = f + g + i + h;
 
 	trialCode.innerHTML = enterCode.value;
 
@@ -1425,16 +1386,16 @@ function gameActionPc() {
 	}
 
 
-	if (trialCode.innerHTML == theCode) {
+	// if (trialCode.innerHTML == theCode) {
 
-		gameOverCond("Play Again","Code Cracked");
-	}
-
+	// 	gameOverCond("Play Again","Code Cracked");
+	// }
 	console.log(theCode);
 }
 
 
 let gameplay;
+
 
 //When Decode Button Is Click
 decode.onclick = function(){
@@ -1444,20 +1405,11 @@ decode.onclick = function(){
 
 }
 
-//When Decode Button Is Click
-decodeTwo.onclick = function(){
-	
-	gameplay = gameActionPc();
-	OutOfMoves();
-
-}
-
 //When Enter Key Is Pressed
 enterCode.addEventListener("keyup",function(event){
 	if(event.keyCode == 13){
 		event.preventDefault();
 		gameActionPc();
-		OutOfMoves();
 		}	
 	}
 );
@@ -1467,17 +1419,18 @@ usePcKeyboard.addEventListener('click', () => {
 	toggleStyle(enterCodeBtn, 'display', 'none', 'block');
 	toggleStyle(mobileKeysDiv, 'display', 'none', 'block');
 	toggleStyle(enterCode, 'display', 'block', 'none');
-	toggleStyle(decode, 'display', 'none', 'block');
-	toggleStyle(decodeTwo, 'display','block','none');
 	toggleInnerHtml(usePcKeyboard,'Use Buttons','Use KeyBoard');
 });
 
 //Start Timer On Page Load
-// window.onload = startJSfunc(); 
+window.onload = countDown();
 window.onload = inGame_otherOptionsViewOptions.style.zIndex = "-40";
-window.onload = crakingSectionDiv.style.opacity = "0";
-window.onload = inGame_icons.style.opacity = "0";
-window.onload = usePcKeyboard.style.opacity = "0";
+
+
+
+
+
+
 
 
 
