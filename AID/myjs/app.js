@@ -1,24 +1,41 @@
-//MAIN-SECTIONS
-const landing=document.getElementById('landing');
-
-const start=document.getElementById('startSection');
-
-const loader = document.getElementsByClassName('appLoader')[0];
+//MAJOR DIVS
+const landingPage = document.getElementById('landingPage');
+const homePage = document.getElementById('startSection');
+const picksectionbox = document.getElementById('pickSectionBox');
+const multiplayersection = document.getElementById('multi_player_section');
 
 //NAVIGATIONS
-const allnavs = document.getElementsByClassName('navSection');
+const allnavs = document.querySelector('.navigations');
 const firstNav = document.getElementById('navigation_one');
 const secondNav = document.getElementById('navigation_two');
 const thirdNav = document.getElementById('navigation_three');
 const fourthNav = document.getElementById('navigation_four');
 
-const home = document.getElementById('home');
+const nav_one = document.getElementById('nav_one');
+const nav_two = document.getElementById('nav_two');
+const nav_three = document.getElementById('nav_three');
+const nav_four = document.getElementById('nav_four');
 
-//MINOR-SECTIONS
-const picksectionbox=document.getElementById('pickSectionBox');
-const picksection=document.getElementById('pickSection');
-const multiplayersection=document.getElementById('multi_player_section');
 
+//NAVIGATION BUTTONS
+const homeBtn = document.getElementById('homeBtn');
+
+const navOneBtn = document.getElementById('navOneBtn');
+const navTwoBtn = document.getElementById('navTwoBtn');
+const navThreeBtn = document.getElementById('navThreeBtn');
+const navFourBtn = document.getElementById('navFourBtn');
+
+
+//BUTTONS
+const landingButton = document.getElementById('landing');
+
+const playGameButton = document.getElementById('playGame');
+
+const crackComputerButton = document.getElementById('crackComputer');
+const multiPlayerButton = document.getElementById('multiPlayer');
+
+const playVersusButton = document.getElementById('playVersus');
+const playOnlineButton = document.getElementById('playOnline');
 
 //COMPUTER DIGIT DIFFICULTY
 const digitsComputer = document.getElementById('digitChoice_one');
@@ -35,102 +52,98 @@ const digitsOnline = document.getElementById('digitChoice_three');
 const crackfourDigitOnline = document.getElementById('crackfourDigitOnline');
 const crackSixDigitOnline = document.getElementById('crackSixDigitOnline');
 
-//IN GAME
-const startCrackingGame = document.getElementById('codeSection');
 
-
-//INGAME SIDEBAR
-const inGame_otherOptions = document.getElementById('otherOptions');
-const inGame_hint = document.getElementById('hint');
-const inGame_partialFix = document.getElementById('partialfix');
-const inGame_Trails_and_Stuff = document.getElementById('Trails_and_Stuff');
-
-
-//INGAME ELEMENTS
-const inGame_time = document.getElementById('time');
-const inGame_all_message = document.getElementById('all_message');
-const inGame_decode_input = document.getElementById('decode');
-const inGame_bottom_message = document.getElementById('bottom_message');
-
-
-
-
-
-function opn_main() {
-	start.style.display = "block";
-	landing.style.display = "none";
-	firstNav.style.display = "block";
-}
-
-
-function play() {
-	picksectionbox.style.display = "block";
-
-	loader.style.display = "inline-block";
-
-	setTimeout(() => {
-  		loader.classList.add('fadeOut');
-		}, 500);
-
-	start.style.display = "none";
-	
-
-	startCrackingGame.style.display = "none";
-
-	secondNav.style.display = "block";
-	firstNav.style.display = "none";
-
-	picksectionbox.style.display = "block";
-} 
-
-function startgame(){
-	startCrackingGame.style.display = "block";
-	digitsComputer.style.display = "none";
-
-}
-
-function crackcomputer() {
-	picksection.style.display = "none";
-	digitsComputer.style.display = "block";
-
-	thirdNav.style.display = "block";
-	secondNav.style.display = "none";
-
-	
-}
-
-function multiplayer() {
-	picksection.style.display = "none";
-	multiplayersection.style.display = "block";
-
-	thirdNav.style.display = "block";
-	secondNav.style.display = "none";
-	
-}
-
-//Toggle full Messages
-inGame_Trails_and_Stuff.addEventListener('click', () => {
-	inGame_all_message.classList.toggle('hide');
-
+landingButton.addEventListener('click', () => {
+	landingPage.style.display= "none";
+	homePage.style.opacity = "1";
+	homePage.style.zIndex = "40";
 });
 
+//Play Button
+playGameButton.addEventListener('click', () => {
+	homePage.style.opacity = "0";
+	homePage.style.zIndex = "-40";
 
-function fst_Backbutton() {
-	landing.style.display = "block";
-	start.style.display = "none";
-	firstNav.style.display = "none";
-}
+	firstNav.style.opacity = "1";
+	firstNav.style.zIndex = "40";
+	picksectionbox.style.opacity = "1";
+	picksectionbox.style.zIndex = "40";
+	// homePage.style.display = "none";
+});
 
-function scnd_Backbutton() {
+//crackComputer Button
+crackComputerButton.addEventListener('click', () => {
+	firstNav.style.opacity = "0";
+	firstNav.style.zIndex = "-40";
+	picksectionbox.style.opacity = "0";
+	picksectionbox.style.zIndex = "-40";
+
+	secondNav.style.opacity = "1";
+	secondNav.style.zIndex = "40";
+	digitsComputer.style.opacity = "1";
+	digitsComputer.style.zIndex = "40";
+});
+
+//multiPlayer Button
+multiPlayerButton.addEventListener('click', () => {
+	firstNav.style.opacity = "0";
+	firstNav.style.zIndex = "-40";
+	picksectionbox.style.opacity = "0";
+	picksectionbox.style.zIndex = "-40";
+
+	secondNav.style.opacity = "1";
+	secondNav.style.zIndex = "40";
+	multiplayersection.style.opacity = "1";
+	multiplayersection.style.zIndex = "40";
+});
+
+//playVersus Button
+// playVersusButton.addEventListener('click', () => {
+// 	secondNav.style.opacity = "0";
+// 	secondNav.style.zIndex = "-40";
+// 	multiplayersection.style.opacity = "0";
+// 	multiplayersection.style.zIndex = "-40";
+
+// 	thirdNav.style.opacity = "1";
+// 	thirdNav.style.zIndex = "40";
+// 	digitsVersus.style.opacity = "1";
+// 	digitsVersus.style.zIndex = "40";
+// });
+
+// //playOnline Button
+// playOnlineButton.addEventListener('click', () => {
+// 	secondNav.style.opacity = "0";
+// 	secondNav.style.zIndex = "-40";
+// 	multiplayersection.style.opacity = "0";
+// 	multiplayersection.style.zIndex = "-40";
+
+// 	thirdNav.style.opacity = "1";
+// 	thirdNav.style.zIndex = "40";
+// 	digitsOnline.style.opacity = "1";
+// 	digitsOnline.style.zIndex = "40"; 
+// });
+
+//Navigation Control
+navOneBtn.addEventListener('click', () => {
+	firstNav.style.opacity = "0";
+	firstNav.style.zIndex = "-40";
+	picksectionbox.style.opacity = "0";
+	picksectionbox.style.zIndex = "-40";
+
+	homePage.style.opacity = "1";
+	homePage.style.zIndex = "40";
+	console.log('clicked');
+});
+
+navTwoBtn.addEventListener('click', () => {
 	loader.style.display = "inline-block";
 	start.style.display = "block";
 	firstNav.style.display = "block";
 	picksectionbox.style.display = "none";
 	secondNav.style.display = "none";
+});
 
-}
-
-function trd_Backbutton() {
+navThreeBtn.addEventListener('click', () => {
 	picksection.style.display = "flex";
 	multiplayersection.style.display = "none";
 
@@ -138,11 +151,9 @@ function trd_Backbutton() {
 	thirdNav.style.display = "none";
 	digitsComputer.style.display = "none";
 	startCrackingGame.style.display = "none";
-	
+});
 
-}
-
-function home_button() {
+homeBtn.addEventListener('click', () => {
 	start.style.display = "block";
 
 	firstNav.style.display = "block";
@@ -151,5 +162,23 @@ function home_button() {
 
 	picksectionbox.style.display = "none";
 	multiplayersection.style.display = "none";
-}
+});
 
+function stuffLoaded() {
+	// landingPage.style.display= "none";
+	// allnavs.style.opacity = "0";
+	// allnavs.style.zIndex = "-40";
+	homePage.style.opacity = "0";
+	homePage.style.zIndex = "-40";
+	picksectionbox.style.opacity = "0";
+	picksectionbox.style.zIndex = "-40";
+	multiplayersection.style.opacity = "0";
+	multiplayersection.style.zIndex = "-40";
+	digitsVersus.style.display = "none";
+	digitsOnline.style.display = "none";
+	firstNav.style.opacity = "0";
+	secondNav.style.opacity = "0";
+	thirdNav.style.opacity = "0";
+	fourthNav.style.opacity = "0";
+// window.onload = usePcKeyboard.style.opacity = "0";
+}

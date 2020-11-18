@@ -97,6 +97,19 @@ const restart_button = document.getElementById('start-button');
 
 let theCode;
 const right_arrow ='<i class="fa fa-arrow-right"></i>';
+let w;
+let x;
+let y;
+let z;
+
+let f;
+let g;
+let h;
+let i;
+
+let j;
+
+
 //=====END OF VARIABLES DECLARATION=====//
 
 ///==============================///
@@ -147,7 +160,7 @@ function OutOfMoves() {
 	
 	cnt = parseInt(cnt)+parseInt(1);
 	inGame_movesCount.innerHTML = movedrop - cnt;
-	if (cnt >= 8) {
+	if (cnt >= movedrop) {
 		gameOverCond("Try Again","Out Of Moves");
 	}
 }
@@ -197,6 +210,297 @@ function startTimer(duration, display) {
 			bestTime.innerHTML = time_display.innerHTML;
 			pauser();
 		}
+
+		//CONDITION TO HIDE HINTS BUTTONS
+		if(seconds <= 30 && minutes <= 0){
+			inGame_hint.style.opacity = "0.3";
+			inGame_hint.disabled = true;
+		}
+		else if(seconds <= 20 && minutes <= 0){
+			inGame_partialFix.style.opacity = "0.3";
+			inGame_partialFix.disabled = true;
+		}
+
+		let innerfromstringtoint = parseInt(inGame_movesCount.innerHTML);
+
+		//HINT 1(Get One Dead Number)
+		inGame_hint.addEventListener('click', () => {
+			
+			if((seconds >= 31) &&(minutes <= 0) && (innerfromstringtoint >= 5)){
+				movedrop = 4;
+				inGame_movesCount.innerHTML = movedrop ;
+				time = 0.25; 
+				pauser();
+				startJSfunc();
+				onehintfunc();
+
+			}
+			else if ( (seconds >= 31) &&(minutes <= 0) && (innerfromstringtoint <= 4)) {
+				time = 0.2; 
+				pauser();
+				startJSfunc();
+				onehintfunc();
+
+			}
+			inGame_hint.style.opacity = "0.3";
+			inGame_hint.disabled = true;
+			inGame_hint_h5.style.display = "none";
+			inGame_partialFix.style.opacity = "0.3";
+			inGame_partialFix.disabled = true;
+		});
+
+
+		//HINT 2(Get One Dead Number and One Injured Number)
+		inGame_partialFix.addEventListener('click', () => {
+
+			if ( (seconds >= 21) &&(minutes <= 0) && (innerfromstringtoint >= 5)) {
+				movedrop = 4;
+				inGame_movesCount.innerHTML = movedrop ;
+				time = 0.2; 
+				pauser();
+				startJSfunc();
+				twohintfunc();
+				
+			} 
+			else if ( (seconds >= 21) &&(minutes <= 0) && (innerfromstringtoint <= 4)) {
+				time = 0.135; 
+				pauser();
+				startJSfunc();
+				twohintfunc();
+			}
+			
+				inGame_partialFix.style.opacity = "0.3";
+			inGame_partialFix.disabled = true;
+			inGame_partialfix_h5_1 .style.display = "none";
+			inGame_hint.style.opacity = "0.3";
+			inGame_hint.disabled = true;
+			
+
+			});
+		
+		
+		//ONE HINT DISPLAY FUNCTION
+		function onehintfunc() {
+			let hintRandDisplayNumber = generateRandomNumber(1, 4);
+			let hintCodeDisplay;
+			let hintMessageDisplay;
+
+            if (hintRandDisplayNumber == 1) {
+				hintCodeDisplay = theCode[0] + " * " + " * " + "* " ;
+				hintMessageDisplay = theCode[0] + " is " + hintGrandResult[2];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			 else if (hintRandDisplayNumber == 2) {
+				hintCodeDisplay = " * " + theCode[1] + " * " + " * " ;
+				hintMessageDisplay = theCode[1] + " is " + hintGrandResult[2];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			 else if (hintRandDisplayNumber == 3) {
+				hintCodeDisplay = " * " + " * " + theCode[2]  + " * " ;
+				hintMessageDisplay = theCode[2] + " is " + hintGrandResult[2];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			}
+			 else if (hintRandDisplayNumber == 4) {
+				hintCodeDisplay = " * " + " * " + "* " + theCode[3];
+				hintMessageDisplay = theCode[3] + " is " + hintGrandResult[2];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			
+			enterCode.value= hintCodeDisplay;
+			enterCodeBtn.innerHTML= hintCodeDisplay;
+			trialCode.innerHTML = hintCodeDisplay;
+			most_recent_trial_message.innerHTML = hintMessageDisplay;
+			enterCodeBtn.innerHTML="";
+			enterCode.value="";
+		}
+
+		//=====END OF ONE HINT DISPLAY FUNCTION=====//
+
+		//=================================================//
+
+		//TWO HINT DISPLAY FUNCTION
+		function twohintfunc() {
+			let hintRandDisplayNumber = generateRandomNumber(1, 24);
+			let hintCodeDisplay;
+			let hintMessageDisplay;
+
+			enterCode.value= hintCodeDisplay;
+			enterCodeBtn.innerHTML= hintCodeDisplay;
+			trialCode.innerHTML = hintCodeDisplay;
+			most_recent_trial_message.innerHTML = hintMessageDisplay;
+
+			//FIRST DEAD OTHERS INJURED
+			if (hintRandDisplayNumber == 1) {
+				hintCodeDisplay = theCode[0] + " * " + theCode[1] + "* " ;
+				hintMessageDisplay = " " + theCode[0] + " is " + hintGrandResult[2] + "and " +  theCode[1] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 2) {
+				hintCodeDisplay = theCode[0] + " * " + "* " + theCode[1] ;
+				hintMessageDisplay = " " + theCode[0] + " is " + hintGrandResult[2] + " and " +  theCode[1] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 3) {
+				hintCodeDisplay = theCode[0] + theCode[2] + " * " + "* " ;
+				hintMessageDisplay = " " + theCode[0] + " is " + hintGrandResult[2] + " and " +  theCode[2] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			}
+			else if (hintRandDisplayNumber == 4) {
+				hintCodeDisplay = theCode[0] + " * "  + "* " + theCode[2] ;
+				hintMessageDisplay = " " + theCode[0] + " is " + hintGrandResult[2] + " and " +  theCode[2] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+
+			else if (hintRandDisplayNumber == 5) {
+				hintCodeDisplay = theCode[0] + theCode[3] + " * " + "* " ;
+				hintMessageDisplay = " " + theCode[0] + " is " + hintGrandResult[2] + " and " +  theCode[3] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			}
+			else if (hintRandDisplayNumber == 6) {
+				hintCodeDisplay = theCode[0] + " * "  + theCode[3] + "* " ;
+				hintMessageDisplay = " " + theCode[0] + " is " + hintGrandResult[2] + " and " +  theCode[3] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+ 
+
+			//SECOND DEAD OTHERS INJURED
+			else if (hintRandDisplayNumber == 7) {
+				hintCodeDisplay ="* " + theCode[1] + theCode[0] + " * ";
+				hintMessageDisplay = " " + theCode[1] + " is " + hintGrandResult[2] + " and " +  theCode[0] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 8) {
+				hintCodeDisplay ="* " + theCode[1] + " * " + theCode[0] ;
+				hintMessageDisplay = " " + theCode[1] + " is " + hintGrandResult[2] + " and " +  theCode[0] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 9) {
+				hintCodeDisplay =theCode[2] + theCode[1] + " * "  + "* " ;
+				hintMessageDisplay = " " + theCode[1] + " is " + hintGrandResult[2] + " and " +  theCode[2] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 10) {
+				hintCodeDisplay ="* " + theCode[1] + " * " + theCode[2] ;
+				hintMessageDisplay = " " + theCode[1] + " is " + hintGrandResult[2] + " and " +  theCode[2] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 9) {
+				hintCodeDisplay =theCode[3] + theCode[1] + " * "  + "* " ;
+				hintMessageDisplay = " " + theCode[1] + " is " + hintGrandResult[2] + " and " +  theCode[3] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 12) {
+				hintCodeDisplay ="* " + theCode[1] + theCode[3] + " * "  ;
+				hintMessageDisplay = " " + theCode[1] + " is " + hintGrandResult[2] + " and " +  theCode[3] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+
+
+			//THIRD DEAD OTHERS INJURED
+			else if (hintRandDisplayNumber == 13) {
+				hintCodeDisplay="* " + theCode[0] + theCode[2] + " * ";
+				hintMessageDisplay = " " + theCode[2] + " is " + hintGrandResult[2] + " and " +  theCode[0] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 14) {
+				hintCodeDisplay="* " + " * " + theCode[2] + theCode[0];
+				hintMessageDisplay = " " + theCode[2] + " is " + hintGrandResult[2] + " and " +  theCode[0] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			if (hintRandDisplayNumber == 15) {
+				hintCodeDisplay=theCode[1] + "* " + theCode[2] + " * ";
+				hintMessageDisplay = " " + theCode[2] + " is " + hintGrandResult[2] + " and " +  theCode[1] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 16) {
+				hintCodeDisplay="* " + " * " + theCode[2] + theCode[1];
+				hintMessageDisplay = " " + theCode[2] + " is " + hintGrandResult[2] + " and " +  theCode[1] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 17) {
+				hintCodeDisplay=theCode[3] + " * " + theCode[2] + " * ";
+				hintMessageDisplay = " " + theCode[2] + " is " + hintGrandResult[2] + " and " +  theCode[3] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 18) {
+				hintCodeDisplay="* " + theCode[3] + theCode[2] + " * ";
+				hintMessageDisplay = " " + theCode[2] + " is " + hintGrandResult[2] + " and " +  theCode[3] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+
+
+			//FOURTH DEAD OTHERS INJURED
+			else if (hintRandDisplayNumber == 19) {
+				hintCodeDisplay ="* " + theCode[0] + " * " + theCode[3] ;
+				hintMessageDisplay = " " + theCode[3] + " is " + hintGrandResult[2] + " and " +  theCode[0] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 20) {
+				hintCodeDisplay ="* " + " * " + theCode[0] + theCode[3] ;
+				hintMessageDisplay = " " + theCode[3] + " is " + hintGrandResult[2] + " and " +  theCode[0] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 21) {
+				hintCodeDisplay =theCode[1] + " * " + " * " + theCode[3] ;
+				hintMessageDisplay = " " + theCode[3] + " is " + hintGrandResult[2] + " and " +  theCode[1] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 22) {
+				hintCodeDisplay ="* " + " * " + theCode[1] + theCode[3] ;
+				hintMessageDisplay = " " + theCode[3] + " is " + hintGrandResult[2] + " and " +  theCode[1] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 23) {
+				hintCodeDisplay =theCode[2] + " * " + " * " + theCode[3] ;
+				hintMessageDisplay = " " + theCode[3] + " is " + hintGrandResult[2] + " and " +  theCode[2] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			else if (hintRandDisplayNumber == 24) {
+				hintCodeDisplay ="* " + theCode[2] + " * " + theCode[3] ;
+				hintMessageDisplay = " " + theCode[3] + " is " + hintGrandResult[2] + " and " +  theCode[2] + " is " + hintGrandResult[1];
+				enterCodeBtn.innerHTML="";
+				enterCode.value="";
+			} 
+			
+			enterCode.value= hintCodeDisplay;
+			enterCodeBtn.innerHTML= hintCodeDisplay;
+			trialCode.innerHTML = hintCodeDisplay;
+			most_recent_trial_message.innerHTML = hintMessageDisplay;
+			enterCodeBtn.innerHTML="";
+			enterCode.value="";
+
+		}
+
+		//=====END OF TWO HINT DISPLAY FUNCTION=====//
+
+
     };
 
     // don't want to wait a full second before the timer starts
@@ -214,7 +518,7 @@ function pauser() {
 }
 
 
-let time = 2; 
+let time = 1; 
 
 function startJSfunc() {
     var fiveMinutes = 60 * time,
@@ -226,7 +530,7 @@ function startJSfunc() {
 
 //Keep Playing Button
 keepPlayingButton.addEventListener('click', () => {
-	time = 0.5;
+	time = 0.10;
 	startJSfunc();
 	
 	Game_OverDiv.style.opacity='0';
@@ -273,6 +577,7 @@ restart_button.addEventListener('click', () => {
 inGame_otherOptionsNewgame.addEventListener('click', () => {
 	location.reload();
 });
+
 
 
 //=====END OF TIMING=====//
@@ -328,9 +633,15 @@ function toggleGrand() {
 	GrandResult = GrandResult === resultsForEmoji ? results :  resultsForEmoji;
 }
 
+//Change hintGrandResult to Emoji or Words
+function toggleHintDisplay() {
+	hintGrandResult = hintGrandResult === hintResultsForEmoji ? hintResults :  hintResultsForEmoji;
+}
+
 //Toggle InnerHTML Between Emojis and Words Usage 
 inGame_otherOptionsToEmoji.addEventListener('click', e => {
 	toggleGrand();
+	toggleHintDisplay();
 	toggleInnerHtml(inGame_otherOptionsToEmoji,'Use Emojis','Use Words');
   });
 
@@ -458,6 +769,11 @@ const gen4 = uniqueRangeGenerator(4,0,9);
 
 //=====Results Display=====//
 
+let aliveWord = "alive";
+let injuredWord = "injured";
+let deadWord = "dead";
+
+
 let alive = "&#128519;";
 let injured = "&#129301;";
 let dead = "&#128128;";
@@ -536,8 +852,14 @@ let resultsForEmoji = [threeIoneAForEmoji,twoItwoAForEmoji,oneIthreeAForEmoji,
 				twoDtwoAForEmoji,obeDthreeIForEmoji,oneDthreeAForEmoji,twoDtwoIForEmoji];
 
 
+
+
 let GrandResult = results;
 
+let hintResults = [aliveWord,injuredWord,deadWord];
+let hintResultsForEmoji = [alive,injured,dead];
+
+let hintGrandResult = hintResults;
 
 //=====End Of Results Display=====//
 
@@ -555,12 +877,13 @@ function gameAction() {
 	y = screen[2];
 	z = screen[3];
 
-	var f = String(gen4[0]);
-	var g = String(gen4[1]);
-	var h = String(gen4[2]);
-	var i = String(gen4[3]);
+	f = String(gen4[0]);
+	g = String(gen4[1]);
+	h = String(gen4[2]);
+	i = String(gen4[3]);
 
-	var j = [f,g,h,i];
+
+	j = [f,g,h,i];
 
 	theCode = f + g + h + i;
 
@@ -1034,18 +1357,18 @@ function gameActionPc() {
 	const newli = document.createElement("LI");
 	const trialss = trialCode.innerHTML + " " + most_recent_trial_message.innerHTML;
 	
-	var w = enterCode.value[0];
-	var x = enterCode.value[1];
-	var y = enterCode.value[2];
-	var z = enterCode.value[3];
+	w = enterCode.value[0];
+	x = enterCode.value[1];
+	y = enterCode.value[2];
+	z = enterCode.value[3];
 
-	var f = String(gen4[0]);
-	var g = String(gen4[1]);
-	var h = String(gen4[2]);
-	var i = String(gen4[3]);
+	f = String(gen4[0]);
+	g = String(gen4[1]);
+	h = String(gen4[2]);
+	i = String(gen4[3]);
 
 
-	var j = [f,g,h,i];
+	j = [f,g,h,i];
 
 	theCode = f + g + h + i;
 
@@ -1433,10 +1756,24 @@ function gameActionPc() {
 	console.log(theCode);
 }
 
+//=====MAKE THE CODE GLOBALLY AVALIABLE=====//
 
+f = String(gen4[0]);
+g = String(gen4[1]);
+h = String(gen4[2]);
+i = String(gen4[3]);
+
+
+j = [f,g,h,i];
+
+theCode = f + g + h + i;
+
+//=====END OF MAKE THE CODE GLOBALLY AVALIABLE=====/
+
+//FIRE FUNCTION VARIABLE FOR BTN DECODE
 let gameplay;
 
-//When Decode Button Is Click
+//When Decode Button Is Click For Mobile
 decode.onclick = function(){
 	
 	gameplay = gameAction();
@@ -1444,7 +1781,7 @@ decode.onclick = function(){
 
 }
 
-//When Decode Button Is Click
+//When Decode Button Is Click For Pc
 decodeTwo.onclick = function(){
 	
 	gameplay = gameActionPc();
@@ -1452,7 +1789,7 @@ decodeTwo.onclick = function(){
 
 }
 
-//When Enter Key Is Pressed
+//When Enter Key Is Pressed (For Pc)
 enterCode.addEventListener("keyup",function(event){
 	if(event.keyCode == 13){
 		event.preventDefault();
