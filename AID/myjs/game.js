@@ -194,6 +194,8 @@ function gameOverCond(btnmessage,message) {
 var cnt=0;
 var movedrop = 8;
 
+var oog = 0;
+
 function OutOfMoves() {
 	
 	cnt = parseInt(cnt)+parseInt(1);
@@ -204,6 +206,16 @@ function OutOfMoves() {
 	}
 }
 
+function OutOfGrace() {
+	
+	oog = parseInt(oog)+parseInt(1);
+	if (oog >= 2) {
+		timeUp.innerHTML = "Times Up" + "<br><span style='font-size:20px'>Secret Code " + right_arrow + " " + theCode + "</span>";
+	}
+	else{
+		timeUp.innerHTML = "Times Up";
+	}
+}
 //=====GAMEOVER CONDITIONS FUNCTIONALITY=====//
 
 ///==============================///
@@ -237,6 +249,7 @@ function startTimer(duration, display) {
             start = Date.now() + 1000;
 		}
 		
+		
 		if(seconds <= 0 && minutes <= 0){
 		
 			crakingSectionDiv.style.opacity='0.4';
@@ -249,6 +262,10 @@ function startTimer(duration, display) {
 			bestTime.innerHTML = time_display.innerHTML;
 			pauser();
 			gameOverSong();
+
+			OutOfGrace();
+
+
 		}
 
 		//CONDITION TO HIDE HINTS BUTTONS
@@ -582,10 +599,10 @@ keepPlayingButton.addEventListener('click', () => {
 	var cnt=0;
 	function CountFun() {
 	cnt = parseInt(cnt)+parseInt(1);
+	console.log(cnt);
 	if (cnt >= 1) {
 		keepPlayingButton.style.display = "none";
-		retryButton.style.marginLeft = "30%";
-		
+		retryButton.style.marginLeft = "30%";	
 	};
 }
 
@@ -943,7 +960,6 @@ offIt.addEventListener('click', () => {
 
 let inGame_otherOptionsUlButtons = inGame_otherOptionsUl.getElementsByTagName('button');
 let inGame_otherOptionsUlli = inGame_otherOptionsUl.getElementsByTagName('li');
-console.log(inGame_otherOptionsUlli);
 
 for (i = 0; i < 10; i++) {
 	allBtns[i].addEventListener('click', () => {
