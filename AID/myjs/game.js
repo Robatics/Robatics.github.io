@@ -215,6 +215,7 @@ function OutOfGrace() {
 	else{
 		timeUp.innerHTML = "Times Up";
 	}
+	console.log(oog);
 }
 //=====GAMEOVER CONDITIONS FUNCTIONALITY=====//
 
@@ -960,6 +961,7 @@ offIt.addEventListener('click', () => {
 
 let inGame_otherOptionsUlButtons = inGame_otherOptionsUl.getElementsByTagName('button');
 let inGame_otherOptionsUlli = inGame_otherOptionsUl.getElementsByTagName('li');
+console.log(inGame_otherOptionsUlli);
 
 for (i = 0; i < 10; i++) {
 	allBtns[i].addEventListener('click', () => {
