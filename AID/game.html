@@ -28,9 +28,10 @@
     <audio id="clickSound" class="sound" autoplay>
       <source id="clickSoundSource" src=""></source>
     </audio>
-    <!-- <audio id="buttonSound" class="sound" autoplay>
-      <source id="buttonSoundSource" src=""></source>
-    </audio> -->
+ 
+    <audio id="gameMainSound" class="sound" autoplay>
+      <source id="gameMainSoundSource" src=""></source>
+    </audio>
 
     <center id="center" class="center">
 
@@ -52,7 +53,8 @@
 <!--GAMEPLAY PLAY BUTTON-->
 
       <button class="playGame" id="playGame">
-          <h3>PLAY GAME</h3>
+       <span></span> 
+       <h3>PLAY GAME</h3>
       </button>
       
       <br><br>
@@ -63,12 +65,19 @@
 
       
 
-      <footer class="bottom" style="display: flex;">
+      <footer class="bottom" id="bottom" style="display: flex;">
 
         <button id="homeSettings" style="margin-left: 5%;font-size: 30px;margin-bottom: 0;">
-          <i class="fa fa-cogs"></i>
+          <i class="fa fa-cog"></i>
         </button>
         
+        <button id="musicSwitchOn" style="margin-left: 5%;font-size: 30px;margin-bottom: 0;">
+          <i class="fa fa-volume-up" id="on"></i>
+        </button>
+
+        <button id="musicSwitchOff" style="margin-left: 5%;font-size: 30px;margin-bottom: 0;">
+          <i class="fa fa-volume-mute" id="off"></i>
+        </button>
         <!-- <button class="Maker" style="margin-left: 20%;">Created By @Robatics</button> -->
 
       </footer>
@@ -123,19 +132,19 @@
 
 
               <div id="mobileKeys">
-                <input id="btn1" class="numbtn" data-sound="1.wav" type="button" value="1" onclick="input(this);soundit(this);" />
-                <input id="btn2" class="numbtn" data-sound="2.wav" type="button" value="2" onclick="input(this);soundit(this);" />
-                <input id="btn3" class="numbtn" data-sound="3.wav" type="button" value="3" onclick="input(this);soundit(this);" />
-                <input id="btn4" class="numbtn" data-sound="4.wav" type="button" value="4" onclick="input(this);soundit(this);" />
+                <input id="btn1" class="numbtn" data-sound="1.wav" type="button" value="1" onclick="input(this);" />
+                <input id="btn2" class="numbtn" data-sound="2.wav" type="button" value="2" onclick="input(this);" />
+                <input id="btn3" class="numbtn" data-sound="3.wav" type="button" value="3" onclick="input(this);" />
+                <input id="btn4" class="numbtn" data-sound="4.wav" type="button" value="4" onclick="input(this);" />
                 <br />
-                <input id="btn5" class="numbtn" data-sound="5.wav" type="button" value="5" onclick="input(this);soundit(this);" />
+                <input id="btn5" class="numbtn" data-sound="5.wav" type="button" value="5" onclick="input(this);" />
                 
-                <input id="btn6" class="numbtn" data-sound="6.wav" type="button" value="6" onclick="input(this);soundit(this);" />
+                <input id="btn6" class="numbtn" data-sound="6.wav" type="button" value="6" onclick="input(this);" />
                 
-                <input id="btn7" class="numbtn" data-sound="7.wav" type="button" value="7" onclick="input(this);soundit(this);" />
-                <input id="btn8" class="numbtn" data-sound="8.wav" type="button" value="8" onclick="input(this);soundit(this);" />
-                <input id="btn9" class="numbtn" data-sound="9.wav" type="button" value="9" onclick="input(this);soundit(this);" />
-                <input id="btn0" class="numbtn" data-sound="0.wav" type="button" value="0" onclick="input(this);soundit(this);" />
+                <input id="btn7" class="numbtn" data-sound="7.wav" type="button" value="7" onclick="input(this);" />
+                <input id="btn8" class="numbtn" data-sound="8.wav" type="button" value="8" onclick="input(this);" />
+                <input id="btn9" class="numbtn" data-sound="9.wav" type="button" value="9" onclick="input(this);" />
+                <input id="btn0" class="numbtn" data-sound="0.wav" type="button" value="0" onclick="input(this);" />
                 <input id="btnDel" data-sound="clear.wav" type="button" value="X" onclick="del();clearit();" />
              </div>
 
@@ -192,6 +201,13 @@
 
                     <li id="setings"><i class="fa fa-cogs"></i><span>Settings</span></li>
                     <button id="toEmoji">Use Emojis</button>
+                    <button id="musicSwitchOn" class="onIt" style="margin-left: 5%;font-size: 30px;margin-bottom: 0;display: none;">
+                      <i class="fa fa-volume-up" id="on"></i>
+                    </button>
+            
+                    <button id="musicSwitchOff" class="offIt" style="margin-left: 5%;font-size: 30px;margin-bottom: 0;">
+                      <i class="fa fa-volume-mute" id="off"></i>
+                    </button>
                     
                     <li id="about"><i class="fa fa-info"></i><span>About</span></li>
                     <li id="aboutHome"><i class="fa fa-info"></i><span>About</span></li>

@@ -104,37 +104,90 @@ body {
 	font-weight: bolder; 
 	font-size: 40em;
 	box-sizing: border-box;
-	background:var(--theme-color);
+	background:var(--theme-transparency);
 	transition: 0.8s;
 	cursor: pointer;
 	border-radius: 20px;
 	outline: none;
 	margin-top: 10vh !important;
-	animation: sweller 4s infinite ease-in-out;
-	transition: 2s ease-in-out;
-
+	/* animation: sweller 4s infinite ease-in-out; */
+	transition: 0.8s ease-out;
+	position: relative;
+	width: 28%;
+	height: 12%;
+	animation: inko 2s infinite;
 }
 
-.playGame:hover {
-
-	padding:20px;
-	background: var(--font-color-a);
-	border: none;
-	outline: none;
-}
-
+.playGame:hover, 
 .playGame:focus{
-	background: var(--font-color-a);
 	border: none;
 	outline: none;
+}
+
+.playGame h3{
+	background:var(--theme-transparency);
+	color: white;
+	position:absolute;
+	top: 26%;
+	left: 12%;
+	z-index: 10;
+}
+
+.playGame span{
+	background: red;
+	position:absolute;
+	height: 99%;
+	width: 100%;
+	top: 0;
+	left:0;
+	border-radius: 20px;
+	z-index: -3;
+	animation: changeback 3s infinite;
+}
+
+/* .playGame:hover span, 
+.playGame:focus span{
+	width:100%;
+	transition: 0.8s;
+} */
+
+@keyframes inko{
+	0%{
+		transform: scale(0.8);
+	}
+	100%{
+		transform: scale(0.9);
+	}
+}
+
+@keyframes changeback{
+	0%{
+		background:var(--font-color-a);
+	}
+
+	100%{
+		background: var(--theme-color);
+	}
 }
 
 @keyframes sweller{
-	from{
-		padding: 20px;
+	0%{
+		width:0;
+		height: 99%;
 	}
-	to{
-		padding: 10px;
+	10%{
+		width:0;
+		height: 99%;
+		background:var(--theme-transparency);
+	}
+	50%{
+		width:50%;
+		background:var(--font-color-a);
+	}
+
+	100%{
+		width:100%;
+		background: var(--theme-color);
 	}
 }
 
@@ -203,6 +256,31 @@ body {
 #homeSettingsBackButton{
 	opacity: 0;
 	z-index: -400;
+}
+
+#musicSwitchOn, 
+#musicSwitchOff{
+	background:var(--theme-transparency);
+	color: var(--font-color-a);
+	outline: none;
+	border: none;
+	cursor: pointer;
+	
+}
+
+#musicSwitch:hover, 
+#musicSwitch:focus,
+#musicSwitchOff:hover, 
+#musicSwitchOff:focus{
+	background:var(--theme-transparency);
+	color: var(--theme-color);
+	outline: none;
+	border: none;
+	cursor: pointer;
+}
+
+#musicSwitchOff{
+	display: none;
 }
 
 #howHome, 
@@ -992,7 +1070,6 @@ cursor: pointer;
 
 
 @media screen and (max-width:1024px){
-
 	body {
 		padding: 0;
 		overflow: hidden;
@@ -1002,11 +1079,42 @@ cursor: pointer;
 	#codeSection {
 		margin: 0;
 	}
+
+	#startSection{
+		margin: 0;
+		width: 100%;
+		left: auto;
+		height: 90vh !important;
+		border: none !important;
+		outline: none;
+		box-shadow: none;
+	}
+
+	#startSection h1 {
+		font-size: 30px;
+	}
+
+	.playGame {
+		margin-top: 20vh !important;
+		width: 60%;
+		height: 10%;
+	}
+
 	
+	.playGame h3{
+
+		top: 13%;
+
+	}
+
+	.bottom{
+		margin-top: 20vh;
+	}
+
 	#crakingSection{
 		margin: 0;
 		width: 100%;
-		height: 90vh !important;
+		height: 100vh !important;
 		border: none !important;
 		outline: none;
 		box-shadow: none;
@@ -1168,6 +1276,15 @@ cursor: pointer;
 
 	.playGame {
 		margin-top: 20vh !important;
+		width: 60%;
+		height: 10%;
+	}
+
+	
+	.playGame h3{
+
+		top: 13%;
+
 	}
 
 	.bottom{

@@ -11,6 +11,19 @@ const buttonSoundSource = document.getElementById('buttonSoundSource');
 const clickSound = document.getElementById('clickSound');
 const clickSoundSource = document.getElementById('clickSoundSource');
 
+const gameMainSound = document.getElementById('gameMainSound');
+const gameMainSoundSource = document.getElementById('gameMainSoundSource');
+
+const musicSwitchOn = document.getElementById('musicSwitchOn');
+const musicSwitchOff = document.getElementById('musicSwitchOff');
+
+const onMusicSwitch = document.getElementById('on');
+const offMusicSwitch = document.getElementById('off');
+
+const onIt = document.querySelector('.onIt');
+const offIt = document.querySelector('.offIt');
+
+
 //INGAME MAIN
 const enterCode = document.getElementById('enterCode');
 
@@ -46,6 +59,9 @@ const Game_OverDiv = document.getElementById('Game_OverDiv');
 
 //WELCOME SCREEN
 const playGame = document.getElementById('playGame');
+const bottom = document.getElementById('bottom');
+const bottomButtons = document.getElementsByTagName('button');
+
 const homeSettings = document.getElementById('homeSettings');
 const homeSettingsBackButton = document.getElementById('homeSettingsBackButton');
 const backToGameHowHome = document.getElementById('backToGameHowHome');
@@ -141,6 +157,11 @@ function toggleInnerHtml(el, inner1, inner2) {
 	el.innerHTML = el.innerHTML === inner1 ? inner2 : inner1;
   }
 
+//Value Toggler
+function toggleValue(el, inner1, inner2) {
+	el.value = el.value === inner1 ? inner2 : inner1;
+  }
+
 // function toggleClassname(el, class1, class2) {
 // 	el.className = el.className === class1 ? class2 : class1;
 //   }
@@ -167,6 +188,7 @@ function gameOverCond(btnmessage,message) {
 	finishedTime.innerHTML = time_display.innerHTML;
 	bestTime.innerHTML = time_display.innerHTML;
 	pauser();
+	gameMainSound.pause();
 }
 
 var cnt=0;
@@ -571,11 +593,6 @@ CountFun();
 
 });
 
-for (i = 0; i < 10; i++) {
-allBtns[i].addEventListener('click', () => {
-	clickit();
-});
-}
 
 //Play Button
 playGame.addEventListener('click', () => {
@@ -746,8 +763,10 @@ inGame_otherOptionsbackToGameHow.addEventListener('click', () => {
 });
 
 //Button to Show Settings
+
 inGame_otherOptionsSetings.addEventListener('click', () => {
 	toggleStyle(inGame_otherOptionsToEmoji, 'display', 'block', 'none');
+	toggleStyle(onIt, 'display', 'none', 'block');
 });
 
 //Change GrandResult to Emoji or Words
@@ -831,12 +850,134 @@ function SetFocus() {
 
 ///==============================///
 
+//=====DEALING WITH SOUND=====//
+
+let onSound = '<i class="fa fa-volume-up" id="on"></i>';
+let offSound = '<i class="fa fa-volume-mute" id="off"></i>';
+
+let amount;
+let loo;
+
+function codecrackedSong() {
+	amount = 1;
+	loo = setInterval(repit, 9000);
+
+	function repit(){
+
+		amount--;
+
+		if (amount == 0) {
+			clearInterval(loo);
+		}
+
+		clickSoundSource.src = "sounds/codecrackedb.wav";
+		clickSound.load();
+	}
+
+	repit();
+}
+
+function clickit() {
+	clickSoundSource.src = "sounds/click.wav";
+	clickSound.load();
+	clickSound.removeAttribute("loop");
+}
+
+function clearit() {
+	clickSoundSource.src = "sounds/cancel.wav";
+	clickSound.load();
+	clickSound.removeAttribute("loop");
+}
+
+function gameOverSong() {
+	clickSoundSource.src = "sounds/gameover.wav";
+	clickSound.load();
+}
+
+function gameSong() {
+	gameMainSoundSource.src = "sounds/gametune1.mp3";
+	gameMainSound.load();
+	gameMainSound.setAttribute('loop','');
+}
+
+musicSwitchOn.addEventListener('click', () => {
+	musicSwitchOn.style.display = "none";
+	musicSwitchOff.style.display = "block";
+	buttonSound.removeAttribute("autoplay");
+	clickSound.removeAttribute("autoplay");
+	gameMainSound.pause();
+	onIt.style.display = "none";
+	offIt.style.display = "block";
+});
+
+musicSwitchOff.addEventListener('click', () => {
+	musicSwitchOn.style.display = "block";
+	musicSwitchOff.style.display = "none";
+	buttonSound.setAttribute("autoplay","");
+	clickSound.setAttribute("autoplay","");
+	gameMainSound.play();
+	onIt.style.display = "block";
+	offIt.style.display = "none";
+});
+
+onIt.addEventListener('click', () => {
+	onIt.style.display = "none";
+	offIt.style.display = "block";
+	musicSwitchOn.style.display = "none";
+	musicSwitchOff.style.display = "block";
+	buttonSound.removeAttribute("autoplay");
+	clickSound.removeAttribute("autoplay");
+	gameMainSound.pause();
+
+});
+
+offIt.addEventListener('click', () => {
+	onIt.style.display = "block";
+	offIt.style.display = "none";
+	musicSwitchOn.style.display = "block";
+	musicSwitchOff.style.display = "none";
+	buttonSound.setAttribute("autoplay","");
+	clickSound.setAttribute("autoplay","");
+	gameMainSound.play();
+});
+
+let inGame_otherOptionsUlButtons = inGame_otherOptionsUl.getElementsByTagName('button');
+let inGame_otherOptionsUlli = inGame_otherOptionsUl.getElementsByTagName('li');
+console.log(inGame_otherOptionsUlli);
+
+for (i = 0; i < 10; i++) {
+	allBtns[i].addEventListener('click', () => {
+		clickit();
+	});
+}
+	
+for (i = 0; i < 3; i++) {
+		inGame_otherOptionsUlButtons[i].addEventListener('click', () => {
+			clickit();
+		});
+}
+
+// for (i = 0; i < 8; i++) {
+// 	inGame_otherOptionsUlli[i].addEventListener('click', () => {
+// 		clickit();
+// 	});
+// }
+
+//=====END OF DEALING WITH SOUND=====//
+
+//=========================================//
+
+
 //=====Start Mobile Keyboard=====//
 
 //Insert Button Value
 function input(e) {
 	const delButton = document.getElementById("btnDel");
 	enterCodeBtn.innerHTML = enterCodeBtn.innerHTML + e.value;
+	buttonSoundSource.src = "sounds/" + e.getAttribute('data-sound');
+	buttonSound.load();
+	clickSound.removeAttribute("loop");
+	
 	if (enterCodeBtn.innerHTML.length >= 4) {
 			for (i = 0; i < 10; i++) {
 			var numbuttons = document.getElementById("btn" + i);
@@ -846,25 +987,6 @@ function input(e) {
 	// console.log(enterCodeBtn.innerHTML.length);
 }
 
-function soundit(e) {
-	buttonSoundSource.src = "sounds/" + e.getAttribute('data-sound');
-	buttonSound.load();
-}
-
-function clickit() {
-	clickSoundSource.src = "sounds/click.wav";
-	clickSound.load();
-}
-
-function clearit() {
-	clickSoundSource.src = "sounds/cancel.wav";
-	clickSound.load();
-}
-
-function gameOverSong() {
-	clickSoundSource.src = "sounds/gameover.wav";
-	clickSound.load();
-}
 
 //Delete Last Value
 function del() {
@@ -1043,6 +1165,34 @@ function gameAction() {
 		enterCode.value="";
 	}
 
+	//~You Missed 4 Numbers
+	else if(screen.length <= 0){
+		most_recent_trial_message.innerHTML = "!! Enter 4 Numbers";
+		enterCodeBtn.innerHTML="";
+		enterCode.value="";
+	}
+
+	//~You Missed 3 Numbers
+	else if(screen.length <= 1){
+		most_recent_trial_message.innerHTML = "!! You Missed 3 Numbers";
+		enterCodeBtn.innerHTML="";
+		enterCode.value="";
+	}
+
+	//~NYou Missed 2 Numbers
+	else if(screen.length <= 2){
+			most_recent_trial_message.innerHTML = "!! You Missed 2 Numbers";
+			enterCodeBtn.innerHTML="";
+			enterCode.value="";
+		}
+	
+	//~You Missed A Numbers
+	else if(screen.length <= 3){
+		most_recent_trial_message.innerHTML = "!! You Missed A Numbers";
+		enterCodeBtn.innerHTML="";
+		enterCode.value="";
+	}
+
 	//~3 injured,1 alive
 	else if(WinJ && XinJ && YinJ && !ZinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[0];
@@ -1485,6 +1635,7 @@ function gameAction() {
 	if (trialCode.innerHTML == theCode) {
 
 		gameOverCond("Play Again","Code Cracked");
+		codecrackedSong();
 	}
 
 	console.log(theCode);
@@ -1527,6 +1678,33 @@ function gameActionPc() {
 		enterCode.value="";
 	}
 
+	//~You Missed 4 Numbers
+	else if(enterCode.value.length <= 0){
+		most_recent_trial_message.innerHTML = "!! Enter 4 Numbers";
+		enterCodeBtn.innerHTML="";
+		enterCode.value="";
+	}
+
+	//~You Missed 3 Numbers
+	else if(enterCode.value.length <= 1){
+		most_recent_trial_message.innerHTML = "!! You Missed 3 Numbers";
+		enterCodeBtn.innerHTML="";
+		enterCode.value="";
+	}
+
+	//~NYou Missed 2 Numbers
+	else if(enterCode.value.length <= 2){
+			most_recent_trial_message.innerHTML = "!! You Missed 2 Numbers";
+			enterCodeBtn.innerHTML="";
+			enterCode.value="";
+		}
+	
+	//~You Missed A Numbers
+	else if(enterCode.value.length <= 3){
+		most_recent_trial_message.innerHTML = "!! You Missed A Numbers";
+		enterCodeBtn.innerHTML="";
+		enterCode.value="";
+	}
 	//~3 injured,1 alive
 	else if(WinJ && XinJ && YinJ && !ZinJ && w!=f && x!=g && y!=h && z!=i){
 		most_recent_trial_message.innerHTML = GrandResult[0];
@@ -1893,6 +2071,7 @@ function gameActionPc() {
 	if (trialCode.innerHTML == theCode) {
 
 		gameOverCond("Play Again","Code Cracked");
+		codecrackedSong();
 	}
 
 	console.log(theCode);
@@ -1943,13 +2122,14 @@ enterCode.addEventListener("keyup",function(event){
 
 //Toggle KeyBoard and Buttons For PC
 usePcKeyboard.addEventListener('click', () => {
+	SetFocus();
 	toggleStyle(enterCodeBtn, 'display', 'none', 'block');
 	toggleStyle(mobileKeysDiv, 'display', 'none', 'block');
 	toggleStyle(enterCode, 'display', 'block', 'none');
 	toggleStyle(decode, 'display', 'none', 'block');
 	toggleStyle(decodeTwo, 'display','block','none');
 	toggleInnerHtml(usePcKeyboard,'Use Buttons','Use KeyBoard');
-	
+	enterCode.value = enterCodeBtn.innerHTML;
 });
 
 //Start Timer On Page Load
@@ -1959,6 +2139,6 @@ window.onload = crakingSectionDiv.style.opacity = "0";
 window.onload = inGame_icons.style.opacity = "0";
 window.onload = usePcKeyboard.style.opacity = "0";
 
-// window.onload = buttonSound.play();
+window.onload = gameSong();
 
 
