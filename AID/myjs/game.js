@@ -270,11 +270,12 @@ function startTimer(duration, display) {
 		}
 
 		//CONDITION TO HIDE HINTS BUTTONS
-		if(seconds <= 30 && minutes <= 0){
+		if(seconds <= 30 && minutes < 1){
 			inGame_hint.style.opacity = "0.3";
 			inGame_hint.disabled = true;
 		}
-		else if(seconds <= 20 && minutes <= 0){
+		
+		if(seconds <= 35 && minutes < 1){
 			inGame_partialFix.style.opacity = "0.3";
 			inGame_partialFix.disabled = true;
 		}
@@ -284,20 +285,34 @@ function startTimer(duration, display) {
 		//HINT 1(Get One Dead Number)
 		inGame_hint.addEventListener('click', () => {
 			
-			if((seconds >= 31) &&(minutes <= 0) && (innerfromstringtoint >= 5)){
+			if((seconds >= 21) && (minutes >= 1) && (innerfromstringtoint >= 5)){
 				movedrop = 4;
 				inGame_movesCount.innerHTML = movedrop ;
-				time = 0.25; 
+				time = 0.4; 
 				pauser();
 				startJSfunc();
 				onehintfunc();
 
 			}
-			else if ( (seconds >= 31) &&(minutes <= 0) && (innerfromstringtoint <= 4)) {
-				time = 0.2; 
+			else if ( (seconds >= 21) && (minutes < 1) && (innerfromstringtoint >= 5)) {
+				movedrop = 4;
+				inGame_movesCount.innerHTML = movedrop ;
+				time = 0.35; 
 				pauser();
 				startJSfunc();
 				onehintfunc();
+
+			}
+			else if ( (seconds >= 21) && (minutes < 1) && (innerfromstringtoint <= 4)) {
+				
+				movedrop = innerfromstringtoint;
+				cnt = 0;
+				inGame_movesCount.innerHTML = movedrop ;
+				time = 0.3; 
+				pauser();
+				startJSfunc();
+				onehintfunc();
+				console.log(innerfromstringtoint);
 
 			}
 			inGame_hint.style.opacity = "0.3";
@@ -311,17 +326,30 @@ function startTimer(duration, display) {
 		//HINT 2(Get One Dead Number and One Injured Number)
 		inGame_partialFix.addEventListener('click', () => {
 
-			if ( (seconds >= 21) &&(minutes <= 0) && (innerfromstringtoint >= 5)) {
+			if ( (seconds >= 21) &&(minutes >= 1) && (innerfromstringtoint >= 5)) {
 				movedrop = 4;
 				inGame_movesCount.innerHTML = movedrop ;
-				time = 0.2; 
+				time = 0.3; 
 				pauser();
 				startJSfunc();
 				twohintfunc();
 				
 			} 
-			else if ( (seconds >= 21) &&(minutes <= 0) && (innerfromstringtoint <= 4)) {
-				time = 0.135; 
+			
+			else if ( (seconds >= 21) &&(minutes < 1) && (innerfromstringtoint >= 5)) {
+				movedrop = 4;
+				inGame_movesCount.innerHTML = movedrop ;
+				time = 0.25; 
+				pauser();
+				startJSfunc();
+				twohintfunc();
+				
+			} 
+			else if ( (seconds >= 21) &&(minutes < 1) && (innerfromstringtoint <= 4)) {
+				movedrop = innerfromstringtoint;
+				cnt = 0;
+				inGame_movesCount.innerHTML = movedrop ;
+				time = 0.2; 
 				pauser();
 				startJSfunc();
 				twohintfunc();
@@ -576,7 +604,7 @@ function pauser() {
 }
 
 
-let time = 1; 
+let time = 1.5; 
 
 function startJSfunc() {
     var fiveMinutes = 60 * time,
@@ -588,7 +616,7 @@ function startJSfunc() {
 
 //Keep Playing Button
 keepPlayingButton.addEventListener('click', () => {
-	time = 0.10;
+	time = 0.25;
 	startJSfunc();
 	
 	Game_OverDiv.style.opacity='0';
