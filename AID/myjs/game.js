@@ -285,7 +285,7 @@ function startTimer(duration, display) {
 		//HINT 1(Get One Dead Number)
 		inGame_hint.addEventListener('click', () => {
 			
-			if((seconds >= 21) && (minutes >= 1) && (innerfromstringtoint >= 5)){
+			if((seconds >= 1) && (minutes >= 1) && (innerfromstringtoint >= 5)){
 				movedrop = 4;
 				inGame_movesCount.innerHTML = movedrop ;
 				time = 0.4; 
@@ -294,7 +294,7 @@ function startTimer(duration, display) {
 				onehintfunc();
 
 			}
-			else if ( (seconds >= 21) && (minutes < 1) && (innerfromstringtoint >= 5)) {
+			else if ( (seconds >= 1) && (minutes < 1) && (innerfromstringtoint >= 5)) {
 				movedrop = 4;
 				inGame_movesCount.innerHTML = movedrop ;
 				time = 0.35; 
@@ -303,7 +303,7 @@ function startTimer(duration, display) {
 				onehintfunc();
 
 			}
-			else if ( (seconds >= 21) && (minutes < 1) && (innerfromstringtoint <= 4)) {
+			else if ( (seconds >=1) && (minutes < 1) && (innerfromstringtoint <= 4)) {
 				
 				movedrop = innerfromstringtoint;
 				cnt = 0;
@@ -326,7 +326,7 @@ function startTimer(duration, display) {
 		//HINT 2(Get One Dead Number and One Injured Number)
 		inGame_partialFix.addEventListener('click', () => {
 
-			if ( (seconds >= 21) &&(minutes >= 1) && (innerfromstringtoint >= 5)) {
+			if ( (seconds >= 1) &&(minutes >= 1) && (innerfromstringtoint >= 5)) {
 				movedrop = 4;
 				inGame_movesCount.innerHTML = movedrop ;
 				time = 0.3; 
@@ -336,7 +336,7 @@ function startTimer(duration, display) {
 				
 			} 
 			
-			else if ( (seconds >= 21) &&(minutes < 1) && (innerfromstringtoint >= 5)) {
+			else if ( (seconds >= 1) &&(minutes < 1) && (innerfromstringtoint >= 5)) {
 				movedrop = 4;
 				inGame_movesCount.innerHTML = movedrop ;
 				time = 0.25; 
@@ -345,7 +345,7 @@ function startTimer(duration, display) {
 				twohintfunc();
 				
 			} 
-			else if ( (seconds >= 21) &&(minutes < 1) && (innerfromstringtoint <= 4)) {
+			else if ( (seconds >= 1) &&(minutes < 1) && (innerfromstringtoint <= 4)) {
 				movedrop = innerfromstringtoint;
 				cnt = 0;
 				inGame_movesCount.innerHTML = movedrop ;
