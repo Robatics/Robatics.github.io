@@ -117,6 +117,9 @@ a:focus {
   color:var(--theme-color);
 }
 
+#sideNav ul li a:focus{
+  color:#fff;
+}
 
 .addedFunction{
   flex-basis: 20%;
