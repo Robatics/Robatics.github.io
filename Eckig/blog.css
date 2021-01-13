@@ -1,0 +1,129 @@
+
+/* OTHER PAGES */  
+  .blog-main{
+    border-radius:25px !important;
+    margin-top:5% !important;
+    margin-bottom:5% !important;
+  }
+  
+  .blog-main .blog-posts{
+    width: 100%;
+    display:grid !important;
+    grid-template-columns:1fr 1fr 1fr  !important;
+    padding: 2%;
+  }
+
+  .blog-main .blog-post{
+    border-radius:15px;
+    border: 1px solid #749ae2 !important;
+    /* background:#749ae2 !important; */
+    width: 90% !important;
+    height: 90% !important;
+    transition:1s;
+    margin: 0px auto;
+  }
+  
+  .blog-main .blog-post:hover{
+    transform:scale(1.05);
+  }
+  
+  .post-image-content, 
+  .post-featured-image{
+    border-radius:25px;
+    width:100% !important;
+    height:60%;
+  }
+  
+  .post-featured-image a::after{
+    border-radius:25px;
+  }
+
+  .post-featured-image a img{
+    width:100% !important;
+    height: 100%;
+  }
+  .entry-header{
+    color:black !important;
+    font-weight:bold;
+    padding:10px;
+  }
+  
+  .entry-title,
+  .entry-header .cat-links::before, 
+  .entry-header .comments::before, 
+  .entry-header span, 
+  .entry-meta a{
+    color:black !important;
+  }
+  
+.pagination{
+    margin-top: 1%;
+    margin-left: 4%;
+}
+
+.pagination .nav-links{
+    list-style: none;
+    display: flex;
+}
+
+.pagination .nav-links li{
+    list-style: none;
+    width:30px !important;
+    height:30px !important;
+    border: 1px solid var(--theme-color) !important;
+    text-align: center;
+    border-radius:8px;
+    margin-left: 10px;
+}
+
+.pagination .nav-links li:hover{
+    transform:scale(1.05);
+}
+
+.pagination .nav-links a{
+    text-decoration: none;
+    color: var(--theme-color);
+}
+
+.page-numbers{
+    font-weight:bold;
+}
+
+@media only screen and (max-width: 980px) {
+    
+    .blog-main .blog-posts{
+        grid-template-columns:1fr !important;
+    }
+
+    .post-image-content, 
+    .post-featured-image{
+        height:60%;
+    }
+
+    .pagination .nav-links{
+        flex-direction: row;
+        margin-top:1%;
+    }
+
+    .pagination .nav-links li{
+        margin:1%;
+    }
+  } 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

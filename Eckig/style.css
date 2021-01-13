@@ -174,9 +174,12 @@ a:focus {
   outline:none;
 }
 
+.hamburger{
+  display:none;
+}
 
 
-@media screen and (max-width:980px){
+@media screen and (max-width:1110px){
 #sideNav {
   width: 250px;
   height: 100vh;
@@ -215,6 +218,7 @@ nav ul li a{
 }
 
 .hamburger{
+  display:block;
   height: 40px;
   width: 100px;
   position: fixed;
@@ -493,8 +497,72 @@ nav ul li a{
 }
 
 /*=====END OF MAIN HERO=====*/
-
 /* ============================================ */
+/*=====OTHER PAGE HERO=====*/
+.otherPageHero{
+  position:relative;
+  height:60vh;
+  background:rgba(0,0,0,0.8);
+  overflow:hidden;
+  border-bottom-left-radius: 25px !important;
+  border-bottom-right-radius: 25px !important;
+  transition:1s;
+}
+
+.otherPageHero_image{
+  height: 100%;
+  width: 100%;
+  overflow:hidden;
+  background:black;
+  opacity:0.6;
+  padding-top:0px !important;
+}
+
+.otherPageHero_image img{
+  height: 100%;
+  width: 100%;
+}
+
+#otherPageHeroabout{
+  position:absolute;
+  width:100%;
+  height:100%;
+  margin-top:0 !important;
+  top:0 !important;
+  z-index:3;
+  background:transparent;
+  border-bottom-left-radius: 25px !important;
+  border-bottom-right-radius: 25px !important;
+  text-align:left;
+  padding-top:20%;
+
+}
+
+#otherPageHeroabout h2{
+  font-weight: bolder;
+  font-size:40px;
+  color:#fff;
+}
+
+#otherPageHeroabout h3{
+  font-weight: bold;
+  font-size:25px;
+  color:#fff;
+}
+
+#otherPageHeroabout h2:hover, 
+#otherPageHeroabout h3:hover{
+  color:var(--theme-color);
+}
+
+@media only screen and (max-width: 900px) { 
+#otherPageHeroabout{
+  padding-top:50%;
+}
+
+}
+
+/*=====END OF OTHER PAGE HERO=====*/
 
 /*-----------FEATURE SECTION-----------*/
 
@@ -928,58 +996,7 @@ transition:0.5s all ease-in-out;
   outline: none;
 }
 
-/*=======for mobile========*/
-
-.service_slide{
-  display:none;
-}
-
-#services_carouselInnerMajor{
-  height:500px;
-  padding:10px !important;
-  width:100%;
-	padding: 10% auto;
-	padding-top: 40px;
-	padding-left: 30%;
-	background:#000;
-  border-bottom-left-radius:25px;
-  border-bottom-right-radius:25px;
-}
-
-#services_carousel_Inner_Item{
-  width:100%;
-  height:90%;
-  padding: 20px auto;
-  margin-top:20px;
-  float: center;
-}
-
-#services_carousel_Inner_Item .single-service img{
-  width: 100%;
-  border-radius:25px;
-}
-
-#services_carousel_Inner_Item .single-service h4{
-  margin: 20px 0px;
-  text-align:justify;
-  font-weight:bolder;
-}
-
-#services_carousel_Inner_Item .single-service:hover h4 {
-  color: var(--theme-color) !important;
-}
-
-#services_carousel_Inner_Item .single-service p {
-  margin-top: 20px;
-  color:#fff;
-  text-align:justify;
-  font-weight:bold;
-}
-
 @media screen and (max-width:500px){
-  .service_slide{
-    display:block;
-  }
 
   #arrowleft, 
   #arrowright{
@@ -990,25 +1007,12 @@ transition:0.5s all ease-in-out;
   padding-bottom:0px;
 }
 
-  .service-wrap, 
-  #service_left{
-    display:none;
-  }
-
-  /* #services_carouselInnerMajor{
-  height:75vh;
-  }
-  #services_carousel_Inner_Item{
-  width:100%;
-  height:50% !important; */
-  /* padding:auto 8%; */
-
 }
 
-/*-------- End offered-service Area ------------*/
+/*=================End offered-service Area ====================*/
+/*======================================================================== */
+/* ================Service  Area css======================= */
 
-/* Service  Area css
-============================================================================================ */
 .service-area{
   background:var(--theme-color);
   padding-bottom:100px;
@@ -1065,7 +1069,6 @@ transition:0.5s all ease-in-out;
       font-weight:bold;
       font-size:50px;
 }
-
 
 .card-service__icon img {
       color: #43464e; 
@@ -1684,7 +1687,7 @@ footer{
 @media only screen and (max-width: 980px) {
   .copyright_inside{
     font-weight:bold !important;
-    padding-left:30%;
+    padding-left:23%;
     background-color: black;
   }
   }

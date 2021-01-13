@@ -37,7 +37,6 @@ function animateText(){
   if(q > 3){
       q = 0;
   }
-    console.log(q);
 }
 setInterval( animateText,11500);
 

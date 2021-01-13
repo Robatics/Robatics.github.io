@@ -1,0 +1,146 @@
+
+.aboutus_message{
+    margin: 50px auto;
+    text-align: center;
+    font-weight:bold;
+}
+
+.aboutus_message h2,
+.aboutus_message h4{
+    margin: 20px auto;
+    text-align: center;
+    font-weight:bold;
+}
+
+.about_future,
+.about_guts{
+    display: flex;
+}
+
+.about_future div,
+.about_guts div{
+    width: 50%;
+}
+
+@media only screen and (max-width: 980px) {
+    
+    .about_future,
+    .about_guts{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .about_future div,
+    .about_guts div{
+        width: 100%;
+    }
+  } 
+  
+
+.team-main{
+    border-radius:25px !important;
+    margin-top:5% !important;
+    margin-bottom:5% !important;
+  }
+  
+.team-main h3{
+    margin: 20px auto;
+    text-align: center;
+    font-weight:bold;
+}
+  .team-main .team-posts{
+    width: 100%;
+    display:grid !important;
+    grid-template-columns:1fr 1fr 1fr  !important;
+    padding: 2%;
+  }
+
+  .team-main .team-post{
+    border-radius:15px;
+    width: 70% !important;
+    height: 85% !important;
+    transition:1s;
+    margin: 0px auto;
+  }
+  
+  .team-main .team-post:hover{
+    transform:scale(1.05);
+  }
+  
+   .team-main .post-image-content, 
+   .team-main .post-featured-image{
+    border: 2px solid #749ae2 !important;
+    border-radius:100%;
+    margin: 2px auto;
+    width:25% !important;
+    height:30%;
+  }
+  
+   .team-main .post-featured-image a::after{
+    border-radius:25px;
+  }
+
+   .team-main .post-featured-image a img{
+    border-radius:100%;
+    width:100% !important;
+    height: 100%;
+  }
+
+   .team-main .entry-header{
+    color:black !important;
+    font-weight:bold;
+    padding:10px;
+    text-align: center;
+  }
+
+  .team-main .entry-header hr{
+    margin: 15px auto;
+    border:2px solid var(--theme-color) !important;
+    width:20%;
+    font-weight:bold;
+    text-align: center;
+  }
+
+   .team-main .entry-header ul{
+      list-style: none;
+      display:flex;
+      justify-content: center;
+  }
+
+   .team-main .entry-header ul li{
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 980px) {
+    
+    .team-main .team-posts{
+        grid-template-columns:1fr !important;
+    }
+
+    .team-main .post-image-content, 
+    .team-main .post-featured-image{
+     width:30% !important;
+     height:30%;
+   }
+
+  } 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
