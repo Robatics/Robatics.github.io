@@ -216,6 +216,14 @@ nav ul li a{
   color:#fff;
 }
 
+#sideNav ul li a:hover{
+  color:var(--theme-color);
+}
+
+#sideNav ul li a:focus{
+  color:#fff;
+}
+
 .logo{
   margin-bottom:0;
 }
