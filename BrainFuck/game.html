@@ -1,164 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
-
-    <link rel="stylesheet" type="text/css" href="mycss/font.css">
-    
-    <link rel="stylesheet" type="text/css" href="mycss/game.css" >
-
-    <link rel="stylesheet" type="text/css" href="mycss/animate.min.css">
-    
-    <link rel="stylesheet" href="fontawesome-free-5.13.1-web/css/all.css">
-
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-
-
-    <title>AID Game</title>
-  </head>
-  <body>
-    <center id="center" class="center">
-
-    <!---GAMEPLAY ENTER CODE SECTION-->
-
-    <section id="codeSection">
-
-
-
-        <section id="crakingSection">
-
-          <div class="container">
-            <div class="heading">
-              <h1 class="title">AID</h1>
-
-
-
-              <div class="headingLeft">
-                <div id="time">
-                  <h4 class="time-display" id="time-left-display">10:00</h4>
-                </div>
-                <a class="restart-button" id="start-button">New Game</a>
-              </div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caged</title>
+    <link rel="stylesheet" type="text/css" href="cage.css">
+</head>
+<body>
+    <div class="scene">
+        <div class="cage">
+            <div class="cube">
+                <div class="front cubesides"></div>
+                <div class="back cubesides"></div>
+                <div class="left cubesides"></div>
+                <div class="right cubesides"></div>
+                <div class="top cubesides"></div>
+                <div class="bottom cubesides"></div>          
             </div>
-        
-            <div class="above-game">
-              <p class="game-intro">Use the results to <strong>crack the code</strong></p>  
-            </div>
-          </div>
-  
-              <div id="icons">
-                
-                <button id="otherOptions"><i class="fa fa-bars"></i>
-  
-                <ul id="options" class="hoverr">
-                  <li id="newgame"><i class="fa fa-gamepad"></i>Newgame</li>
-                  <li id="pause"><i class="fa fa-pause"></i>Pause</li>
-                  <li id="play"><i class="fa fa-play"></i>Play</li>
-                </ul>
-  
-                </button>
-  
-                
-                <button id="hint"> <i class="fa fa-lightbulb hint"></i>
-  
-                  <h5 id="hint_h5" class="hoverr">Get a hint at 40s of your time</h5>
-  
-                </button>
-  
-                
-                <button id="partialfix"><i class="fas fa-puzzle-piece"></i>
-  
-                <h5 id="partialfix_h5_1" class="hoverr">Get two numbers at 1mins of your time</h5>
-                <h5 id="partialfix_h5_2" class="hoverr">Get four numbers at 3mins of your time</h5>
-                
-                </button>
+            
+            <div class="back0 wall"></div>
+            <div class="back1 wall"></div>
+            <div class="back2 wall"></div>
+            <div class="back3 wall"></div>
+            <div class="back4 wall"></div>
+            <div class="back5 wall"></div>
+            <div class="back6 wall"></div>
+            <div class="back7 wall"></div>
+            <div class="back8 wall"></div>
+            <div class="back9 wall"></div>
+            <div class="back10 wall"></div>
+            <div class="back11 wall"></div>
+            <div class="back12 wall"></div>
+            <div class="back13 wall"></div>
+            <div class="back14 wall"></div>
+            <div class="back15 wall"></div>
+            <div class="back16 wall"></div>
+            <div class="back17 wall"></div>
+            <div class="back18 wall"></div>
+            <div class="back19 wall"></div>
+            <div class="back20 wall"></div>
+            <div class="back21 wall"></div>
+            <div class="back22 wall"></div>
+            <div class="back23 wall"></div>
+            <div class="back24 wall"></div>
+            <div class="back25 wall"></div>
+            <div class="back26 wall"></div>
+            <div class="back27 wall"></div>
+            <div class="back28 wall"></div>
+            <div class="back29 wall"></div>
+            <div class="back30 wall"></div>
+            <div class="back31 wall"></div>
+            <div class="back32 wall"></div>
+            <div class="back33 wall"></div>
+            <div class="back34 wall"></div>
+            <div class="back35 wall"></div>
+            <div class="back36 wall"></div>
+            <div class="back37 wall"></div>
+            <div class="back38 wall"></div>
+            <div class="back39 wall"></div>
+            <div class="back40 wall"></div>
+            <div class="back41 wall"></div>
+            <div class="back42 wall"></div>
+            <div class="back43 wall"></div>
+            <div class="back44 wall"></div>
+            <div class="back45 wall"></div>
+            <div class="back46 wall"></div>
+            <div class="back47 wall"></div>
+            <div class="back48 wall"></div>
+            <div class="back49 wall"></div>
 
-                <button id="Trails_and_Stuff"><i class="fas fa-book"></i>
-  
-              
-              </div>
-              
-              
-            <div id="gamePlayGadget">
-              <div id="all_message">
-  
-                <ul id="trial_lists">
-  
-                 <!-- <li>
-                    <p id="trial_message"></p>
-                    <p id="trial_code"></p>
-                  <li>
-                  -->
-  
-                </ul>
-              </div>
-  
-              <div>
-                <form id="enterForm" onsubmit="return false">
-                    <input type="text" id="enterCode" maxlength="4" placeholder="Enter Code" autocomplete="off" data-disable-touch-keyboard>
-                    
-                    <br>
+            <div class="center50 wall"></div>
 
-  
-              <div id="bottom_message">
-                <p id="single_message">CODES <i class="fa fa-arrow-right"></i></p>
-                <p id="most_recent_trial_message">RESULTS</p>
-              </div>
+            <div class="front49 wall"></div>
+            <div class="front48 wall"></div>
+            <div class="front47 wall"></div>
+            <div class="front46 wall"></div>
+            <div class="front45 wall"></div>
+            <div class="front44 wall"></div>
+            <div class="front43 wall"></div>
+            <div class="front42 wall"></div>
+            <div class="front41 wall"></div>
+            <div class="front40 wall"></div>
+            <div class="front39 wall"></div>
+            <div class="front38 wall"></div>
+            <div class="front37 wall"></div>
+            <div class="front36 wall"></div>
+            <div class="front35 wall"></div>
+            <div class="front34 wall"></div>
+            <div class="front33 wall"></div>
+            <div class="front32 wall"></div>
+            <div class="front31 wall"></div>
+            <div class="front30 wall"></div>
+            <div class="front29 wall"></div>
+            <div class="front28 wall"></div>
+            <div class="front27 wall"></div>
+            <div class="front26 wall"></div>
+            <div class="front25 wall"></div>
+            <div class="front24 wall"></div>
+            <div class="front23 wall"></div>
+            <div class="front22 wall"></div>
+            <div class="front21 wall"></div>
+            <div class="front20 wall"></div>
+            <div class="front19 wall"></div>
+            <div class="front18 wall"></div>
+            <div class="front17 wall"></div>
+            <div class="front16 wall"></div>
+            <div class="front15 wall"></div>
+            <div class="front14 wall"></div>
+            <div class="front13 wall"></div>
+            <div class="front12 wall"></div>
+            <div class="front11 wall"></div>
+            <div class="front10 wall"></div>
+            <div class="front9  wall"></div>
+            <div class="front8  wall"></div>
+            <div class="front7  wall"></div>
+            <div class="front6  wall"></div>
+            <div class="front5  wall"></div>
+            <div class="front4 wall"></div>
+            <div class="front3 wall"></div>
+            <div class="front2 wall"></div>
+            <div class="front1 wall"></div>
+            <div class="front0 wall"></div>
+        </div>
 
-              <div id="mobileKeys">
-                <input id="btn1" class="numbtn" type="button" value="1" onclick="input(this);" />
-                <input id="btn2" class="numbtn" type="button" value="2" onclick="input(this);" />
-                <input id="btn3" class="numbtn" type="button" value="3" onclick="input(this);" />
-                <input id="btn4" class="numbtn" type="button" value="4" onclick="input(this);" />
-                <br />
-                <input id="btn5" class="numbtn" type="button" value="5" onclick="input(this);" />
-                
-                <input id="btn6" class="numbtn" type="button" value="6" onclick="input(this);" />
-                
-                <input id="btn7" class="numbtn" type="button" value="7" onclick="input(this);" />
-                <input id="btn8" class="numbtn" type="button" value="8" onclick="input(this);" />
-                <input id="btn9" class="numbtn" type="button" value="9" onclick="input(this);" />
-                <input id="btn0" class="numbtn" type="button" value="0" onclick="input(this)" />
-                <input id="btnDel" type="button" value="X" onclick="del();" />
-             </div>
-
-                 
-             <button type="button" id="decode" >Decode
-            </button>
-      </form>
-      </div>
-              
-            </div>
-
-            </section>
-
-            <div id="Game_OverDiv" class="game-over">
-              <div class="game-container">
-                <div class="game-message">
-                  <p>Times Up</p>
-                  <div class="score-container">1000</div>
-                  <div class="best-container">1500</div>
-                  <br><br>
-                  <div class="lower">
-                    <a class="keep-playing-button">Keep going</a>
-                    <a class="retry-button">Try again</a>
-                  </div>
-                </div>
-            </div>
-          </div>
+        <div class="floor"></div>
+    </div>  
+</body>
+</html>
 
 
-    </section>
-  
-  </center>
-  
-      <!-- <script src="app.js"></script> -->
-      <script src="myjs/game.js"></script>
-      <script src="myjs/jquery-3.5.1.min.js"></script>
-      <script type="text/javascript" src="js/bootstrap.min.js"></script>
-      <script defer src="fontawesome-free-5.13.1-web/js/all.js"></script>
-    </body>
-  </html>
